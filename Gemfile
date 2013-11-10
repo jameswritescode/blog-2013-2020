@@ -12,6 +12,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'devise'
 gem 'compass-rails', '~> 2.0.alpha.0'
+gem 'haml-rails'
 
 group :development do
   gem 'capistrano'
