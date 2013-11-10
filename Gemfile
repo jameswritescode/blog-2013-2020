@@ -15,6 +15,8 @@ gem 'compass-rails', '~> 2.0.alpha.0'
 
 group :development do
   gem 'capistrano'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :test, :development do
