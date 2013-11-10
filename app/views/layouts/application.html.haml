@@ -2,8 +2,21 @@
 %html
   %head
     %title James Newton writes about stuff
+    = stylesheet_link_tag    'http://fonts.googleapis.com/css?family=Lora:400,700'
     = stylesheet_link_tag    :application, media: :all, 'data-turbolinks-track' => true
     = javascript_include_tag :application, 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
+    #header
+      = link_to 'James Newton', root_path
+
     = yield
+
+    #footer
+      #about
+        %p== Hi, I'm James Newton, a developer type. I work for #{link_to 'Chargify', 'https://chargify.com'} doing tech support.
+
+      #links
+        = link_to '', 'https://github.com/jameswritescode', class: 'ion-social-github-outline'
+        = link_to '', 'mailto:hello@jamesnewton.com', class: 'ion-ios7-email-outline'
+        = link_to '', 'https://twitter.com/jameswritescode', class: 'ion-social-twitter-outline'

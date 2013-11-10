@@ -24,5 +24,7 @@ module Blog
       g.javascripts false
       g.stylesheets false
     end
+
+    config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
   end
 end
