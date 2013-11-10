@@ -91,12 +91,16 @@ GEM
     net-ssh (2.7.0)
     orm_adapter (0.4.0)
     polyglot (0.3.3)
+    posix-spawn (0.3.6)
     pry (0.9.12.3)
       coderay (~> 1.0)
       method_source (~> 0.8)
       slop (~> 3.4)
     pry-rails (0.3.2)
       pry (>= 0.9.10)
+    pygments.rb (0.5.2)
+      posix-spawn (~> 0.3.6)
+      yajl-ruby (~> 1.1.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -114,6 +118,7 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.1.0)
+    redcarpet (2.3.0)
     ref (1.0.5)
     sass (3.2.12)
     sass-rails (4.0.1)
@@ -156,6 +161,7 @@ GEM
       json (>= 1.8.0)
     warden (1.2.3)
       rack (>= 1.0)
+    yajl-ruby (1.1.0)
 
 PLATFORMS
   ruby
@@ -172,7 +178,9 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   pry-rails
+  pygments.rb
   rails (= 4.0.1)
+  redcarpet
   sass-rails (~> 4.0.0)
   sqlite3
   therubyracer
