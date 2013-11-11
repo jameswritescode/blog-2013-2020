@@ -26,5 +26,6 @@ module Blog
     end
 
     config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
+    config.autoload_paths += %W(#{config.root}/lib)
   end
 end

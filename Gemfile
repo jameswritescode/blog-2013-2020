@@ -15,6 +15,7 @@ gem 'compass-rails', '~> 2.0.alpha.0'
 gem 'haml-rails'
 gem 'pygments.rb'
 gem 'redcarpet'
+gem 'github-linguist', require: 'linguist'
 gem 'decent_exposure'
 
 group :development do
@@ -25,4 +26,5 @@ end
 
 group :test, :development do
   gem 'pry-rails'
+  gem 'factory_girl_rails'
 end

@@ -1,0 +1,3 @@
+%article
+  %header= link_to post.title, post.slug
+  = Blog::Markdown.new(post.content).render.html_safe

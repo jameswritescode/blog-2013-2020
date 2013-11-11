@@ -38,6 +38,7 @@ GEM
       i18n
       rake (>= 10.0.0)
       sshkit (>= 0.0.23)
+    charlock_holmes (0.6.9.4)
     chunky_png (1.2.8)
     coderay (1.1.0)
     coffee-rails (4.0.1)
@@ -61,8 +62,19 @@ GEM
       railties (>= 3.2.6, < 5)
       warden (~> 1.2.3)
     erubis (2.7.0)
+    escape_utils (0.2.4)
     execjs (2.0.2)
+    factory_girl (4.3.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.3.0)
+      factory_girl (~> 4.3.0)
+      railties (>= 3.0.0)
     fssm (0.2.10)
+    github-linguist (2.3.4)
+      charlock_holmes (~> 0.6.6)
+      escape_utils (~> 0.2.3)
+      mime-types (~> 1.19)
+      pygments.rb (>= 0.2.13)
     haml (4.0.3)
       tilt
     haml-rails (0.4)
@@ -176,6 +188,8 @@ DEPENDENCIES
   compass-rails (~> 2.0.alpha.0)
   decent_exposure
   devise
+  factory_girl_rails
+  github-linguist
   haml-rails
   jbuilder (~> 1.2)
   jquery-rails
