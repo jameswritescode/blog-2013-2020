@@ -1,4 +1,4 @@
 - posts.each do |post|
   %article
     %header= link_to post.title, post_path(post)
-    = Blog::Markdown.new(post.content).render.html_safe
+    = find_and_preserve Blog::Markdown.new(post.content).render.html_safe
