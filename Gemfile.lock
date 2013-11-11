@@ -54,6 +54,7 @@ GEM
     compass-rails (2.0.alpha.0)
       compass (>= 0.12.2, < 0.14)
     debug_inspector (0.0.2)
+    decent_exposure (2.3.0)
     devise (3.0.1)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -173,6 +174,7 @@ DEPENDENCIES
   capistrano
   coffee-rails (~> 4.0.0)
   compass-rails (~> 2.0.alpha.0)
+  decent_exposure
   devise
   haml-rails
   jbuilder (~> 1.2)

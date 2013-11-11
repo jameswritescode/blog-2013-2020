@@ -15,6 +15,7 @@ gem 'compass-rails', '~> 2.0.alpha.0'
 gem 'haml-rails'
 gem 'pygments.rb'
 gem 'redcarpet'
+gem 'decent_exposure'
 
 group :development do
   gem 'capistrano'
