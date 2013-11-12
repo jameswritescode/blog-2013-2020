@@ -27,5 +27,9 @@ module Blog
 
     config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
     config.autoload_paths += %W(#{config.root}/lib)
+
+    config.to_prepare do
+      Devise::SessionsController.layout 'devise'
+    end
   end
 end

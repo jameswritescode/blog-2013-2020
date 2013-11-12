@@ -1,0 +1,16 @@
+#login-box
+  - unless flash.empty?
+    .errors
+      - flash.each do |type, alert|
+        %p= alert
+
+  .logo James Newton
+
+  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    .inputs
+      = f.email_field :email, autofocus: true, autocomplete: false
+      %br
+      = f.password_field :password, autocomplete: false
+      %br
+      .sign-in-button
+        = f.submit 'Sign in'
