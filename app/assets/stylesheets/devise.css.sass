@@ -10,13 +10,17 @@ div#login-box
   div.errors
     display: none
     position: absolute
-    background-color: red
-    width: 500px
+    background-color: white
+    width: 40%
     height: 100px
     font-size: 30px
     text-align: center
     font-family: 'Lato', sans-serif
-    margin: 0 auto
+    top: 3.5em
+    left: 0
+    right: 0
+    margin: auto
+    -webkit-transform: rotate(20deg)
 
   div.logo
     text-align: center
@@ -29,7 +33,7 @@ div#login-box
     width: 92.4%
 
   input[type='email'], input[type='password']
-    width: 100%
+    width: 98%
     height: 50px
     box-shadow: -1px -1px 0 #c12417
     margin-bottom: 20px
@@ -91,8 +95,18 @@ div#login-box
 
 @-webkit-keyframes flicker
   0%
-  50%
+    color: black
+  20%
+    color: white
+  40%
+    color: black
+  60%
+    color: white
+  80%
+    color: black
   100%
+    color: white
+    opacity: 0.5
 
 .flicker
   -webkit-animation-name: flicker
