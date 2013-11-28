@@ -1,5 +1,13 @@
 source 'https://rubygems.org'
 
+def darwin_only(gem)
+  RUBY_PLATFORM.include?('darwin') && gem
+end
+
+def linux_only(gem)
+  RUBY_PLATFORM.include?('linux') && gem
+end
+
 gem 'rails', '4.0.1'
 gem 'sqlite3'
 gem 'sass-rails', '~> 4.0.0'
@@ -27,4 +35,13 @@ end
 group :test, :development do
   gem 'pry-rails'
   gem 'factory_girl_rails'
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'ffaker'
+  gem 'guard-rspec'
+  gem 'rb-fsevent', require: darwin_only('rb-fsevent')
+  gem 'growl', require: darwin_only('growl')
+  gem 'rb-inotify', require: linux_only('rb-inotify')
+  gem 'poltergeist'
 end
