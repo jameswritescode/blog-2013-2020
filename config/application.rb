@@ -29,7 +29,8 @@ module Blog
     config.autoload_paths += %W(#{config.root}/lib)
 
     config.to_prepare do
-      Devise::SessionsController.layout 'devise'
+      Devise::SessionsController.layout   'devise'
+      Admin::ApplicationController.layout 'admin'
     end
   end
 end
