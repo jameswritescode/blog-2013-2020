@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require nprogress
+//= require devise
 
 $(document).on('page:fetch', function() { NProgress.start(); });
 $(document).on('page:change', function() { NProgress.done(); });

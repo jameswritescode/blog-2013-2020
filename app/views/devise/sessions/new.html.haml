@@ -1,16 +1,7 @@
-#login-box
-  - unless flash.empty?
-    .errors
-      - flash.each do |type, alert|
-        %p= alert
-
+#login
   .logo James Newton
 
-  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-    .inputs
-      = f.email_field :email, autofocus: true, autocomplete: false
-      %br
-      = f.password_field :password, autocomplete: false
-      %br
-      .sign-in-button
-        = f.submit 'Sign in'
+  = form_for(resource, as: resource_name, url: session_path(resource_name), builder: LoginFormBuilder) do |f|
+    = f.email_field :email, autofocus: true, autocomplete: :off, placeholder: 'email address', class: 'validate-email'
+    = f.password_field :password, autocomplete: :off, placeholder: :password, class: 'validate-password'
+    = f.submit 'Sign in'
