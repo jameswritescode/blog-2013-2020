@@ -45,3 +45,7 @@ group :test, :development do
   gem 'rb-inotify', require: linux_only('rb-inotify')
   gem 'poltergeist'
 end
+
+group :test do
+  gem 'nyan-cat-formatter'
+end
