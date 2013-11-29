@@ -7,7 +7,8 @@ Blog::Application.routes.draw do
     root to: 'dashboard#index'
   end
 
-  get '/:id', to: 'posts#show', as: :post
+  get '/sitemap.xml', to: 'sitemap#index', as: :sitemap, defaults: { format: :xml }
+  get '/:id',         to: 'posts#show',    as: :post
 
   root to: 'posts#index'
 end

@@ -25,6 +25,8 @@ gem 'pygments.rb'
 gem 'redcarpet'
 gem 'github-linguist', require: 'linguist'
 gem 'decent_exposure'
+gem 'rails-observers'
+gem 'actionpack-page_caching'
 
 group :development do
   gem 'capistrano'

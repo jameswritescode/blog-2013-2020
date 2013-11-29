@@ -10,6 +10,8 @@ GEM
       erubis (~> 2.7.0)
       rack (~> 1.5.2)
       rack-test (~> 0.6.2)
+    actionpack-page_caching (1.0.2)
+      actionpack (>= 4.0.0, < 5)
     activemodel (4.0.1)
       activesupport (= 4.0.1)
       builder (~> 3.1.0)
@@ -167,6 +169,8 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.0.1)
       sprockets-rails (~> 2.0.0)
+    rails-observers (0.1.2)
+      activemodel (~> 4.0)
     railties (4.0.1)
       actionpack (= 4.0.1)
       activesupport (= 4.0.1)
@@ -243,6 +247,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  actionpack-page_caching
   bcrypt-ruby (~> 3.1.2)
   better_errors
   binding_of_caller
@@ -266,6 +271,7 @@ DEPENDENCIES
   pry-rails
   pygments.rb
   rails (= 4.0.1)
+  rails-observers
   rb-fsevent
   rb-inotify
   redcarpet

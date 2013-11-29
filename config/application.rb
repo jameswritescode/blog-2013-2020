@@ -32,5 +32,9 @@ module Blog
       Devise::SessionsController.layout   'devise'
       Admin::ApplicationController.layout 'admin'
     end
+
+    config.active_record.observers = :sitemap_observer
+
+    config.action_controller.page_cache_directory = Rails.root.join('public', 'deploy').to_s
   end
 end
