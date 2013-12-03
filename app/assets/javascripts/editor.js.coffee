@@ -44,7 +44,7 @@ $ ->
     else if container.mozRequestFullScreen
       container.mozRequestFullScreen()
     else if container.webkitRequestFullScreen
-      container.webkitRequestFullScreen()
+      container.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT)
 
   cancelFullScreen = ->
     if document.cancelFullScreen
