@@ -1,0 +1,13 @@
+.tools
+  .fullscreen.ion-arrow-expand
+  .contrast.ion-contrast.contrast-light
+
+%form
+  = text_field_tag :title, nil, placeholder: 'Buzzword filled title'
+
+  .expanding-area
+    %pre
+      %span
+      %br
+
+    = text_area_tag :content, nil, placeholder: 'Try to write something interesting'
