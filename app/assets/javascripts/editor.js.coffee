@@ -57,9 +57,13 @@ $ ->
   $('div.fullscreen').on 'click', ->
     if $(@).hasClass('ion-arrow-expand')
       launchFullScreen(document.documentElement)
-      $(@).removeClass('ion-arrow-expand')
-      $(@).addClass('ion-arrow-shrink')
     else if $(@).hasClass('ion-arrow-shrink')
       cancelFullScreen()
-      $(@).removeClass('ion-arrow-shrink')
-      $(@).addClass('ion-arrow-expand')
+
+  $(document).on 'webkitfullscreenchange mozfullscreenchange fullscreenchange', ->
+    el = $('div.fullscreen')
+
+    if el.hasClass('ion-arrow-expand')
+      el.removeClass('ion-arrow-expand').addClass('ion-arrow-shrink')
+    else if el.hasClass('ion-arrow-shrink')
+      el.removeClass('ion-arrow-shrink').addClass('ion-arrow-expand')
