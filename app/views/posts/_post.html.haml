@@ -1,0 +1,3 @@
+%article
+  %header= link_to Redcarpet::Render::SmartyPants.render(post.title).html_safe, post_path(post)
+  = find_and_preserve Blog::Markdown.new(post.content).render.html_safe

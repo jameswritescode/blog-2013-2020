@@ -1,4 +1,6 @@
 class Redcarpet::Render::BlogHTML < Redcarpet::Render::HTML
+  include Redcarpet::Render::SmartyPants
+
   def block_code(content, language)
     <<-HTML
       <pre><code>
