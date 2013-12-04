@@ -1,13 +1,11 @@
 $ ->
   $('div.contrast').on 'click', ->
     if $(@).hasClass('contrast-light')
-      $(@).removeClass('contrast-light')
-      $(@).addClass('contrast-dark')
+      $(@).removeClass('contrast-light').addClass('contrast-dark')
       $('body.editor').addClass('contrast-dark')
       $('html').css('background-color', 'black')
     else if $(@).hasClass('contrast-dark')
-      $(@).removeClass('contrast-dark')
-      $(@).addClass('contrast-light')
+      $(@).removeClass('contrast-dark').addClass('contrast-light')
       $('body.editor').removeClass('contrast-dark')
       $('html').css('background-color', 'white')
 
