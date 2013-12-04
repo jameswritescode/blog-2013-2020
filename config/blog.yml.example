@@ -1,0 +1,11 @@
+production: &production
+  name: James Newton
+  https: false
+  domain: blog.jamesnewton.com
+
+development:
+  <<: *production
+  domain: blog.jamesnewton.dev
+
+test:
+  <<: *production

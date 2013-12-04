@@ -26,6 +26,7 @@ gem 'redcarpet'
 gem 'decent_exposure'
 gem 'rails-observers'
 gem 'actionpack-page_caching'
+gem 'settingslogic'
 
 group :development do
   gem 'capistrano'

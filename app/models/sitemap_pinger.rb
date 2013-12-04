@@ -6,8 +6,7 @@ class SitemapPinger
 
   def self.ping
     SEARCH_ENGINES.each do |name, url|
-      # TODO Do not hardcore jamesnewton.com
-      request  = url % CGI.escape("http://jamesnewton.com/sitemap.xml")
+      request  = url % CGI.escape("#{Blog.config.hostname}/sitemap.xml")
 
       Net::HTTP.get_response(URI.parse(request)) if Rails.env.production?
     end if Rails.env.production?

@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %title James Newton writes about stuff
+    %title== Blog.config.name writes about stuff
     = stylesheet_link_tag    'http://fonts.googleapis.com/css?family=Lora:400,700'
     = stylesheet_link_tag    :application, media: :all, 'data-turbolinks-track' => true
     %style{ type: 'text/css' }
@@ -9,16 +9,15 @@
     = javascript_include_tag :application, 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    #header
-      = link_to 'James Newton', root_path
+    #header= link_to Blog.config.name, root_path
 
     = yield
 
     #footer
       #about
-        %p== Hi, I'm James Newton, a developer type. I work for #{link_to 'Chargify', 'https://chargify.com'} doing tech support.
+        %p= Blog::Markdown.new(Blog.config.about).render.html_safe
 
       #links
-        = link_to '', 'https://github.com/jameswritescode', class: 'ion-social-github-outline'
-        = link_to '', 'mailto:hello@jamesnewton.com', class: 'ion-ios7-email-outline'
-        = link_to '', 'https://twitter.com/jameswritescode', class: 'ion-social-twitter-outline'
+        = link_to '', "https://github.com/#{Blog.config.github}", class: 'ion-social-github-outline' if Blog.config.github
+        = link_to '', "mailto:#{Blog.config.email}", class: 'ion-ios7-email-outline' if Blog.config.email
+        = link_to '', "https://twitter.com/#{Blog.config.twitter}", class: 'ion-social-twitter-outline' if Blog.config.twitter

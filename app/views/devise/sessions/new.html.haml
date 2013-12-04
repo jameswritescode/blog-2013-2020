@@ -1,5 +1,5 @@
 #login
-  .logo James Newton
+  .logo= Blog.config.name
 
   = form_for(resource, as: resource_name, url: session_path(resource_name), builder: LoginFormBuilder) do |f|
     = f.email_field :email, autofocus: true, autocomplete: :off, placeholder: 'email address', class: 'validate-email'

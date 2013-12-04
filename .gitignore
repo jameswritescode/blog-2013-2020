@@ -5,3 +5,4 @@
 /tmp
 .tern-port
 /public/deploy
+config/blog.yml
