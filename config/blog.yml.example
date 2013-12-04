@@ -2,6 +2,12 @@ production: &production
   name: James Newton
   https: false
   domain: blog.jamesnewton.com
+  title: James Newton writes about stuff
+  about: "Hi, I'm James Newton, a developer type. I work for [Chargify](http://chargify.com) doing tech support."
+  twitter: jameswritescode
+  email: hello@jamesnewton.com
+  github: jameswritescode
+  google_analytics_id:
 
 development:
   <<: *production
@@ -9,3 +15,4 @@ development:
 
 test:
   <<: *production
+
