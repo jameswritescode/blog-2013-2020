@@ -11,31 +11,16 @@ $ ->
 
     return false
 
-  # credit: http://alistapart.com/article/expanding-text-areas-made-elegant
-  makeExpandingArea = (container) ->
-    area = container.querySelector('textarea')
-    span = container.querySelector('span')
+  textareaResize = ->
+    textareaSize = document.documentElement.clientHeight - 100
 
-    if area.addEventListener
-      area.addEventListener 'input', ->
-        span.textContent = area.value
-      , false
-
-      span.textContent = area.value
-    else if area.attachEvent
-      area.attachEvent 'onpropertychange', ->
-        span.innerText = area.value
-
-      span.innerText = area.value
-
-    container.className += ' active'
-
-  areas = document.querySelectorAll('body.editor div.expanding-area')
-  l     = areas.length
+    $('body.editor textarea').css('height', "#{textareaSize}px")
 
   $(document).ready ->
-    while (l--)
-      makeExpandingArea(areas[l])
+    textareaResize()
+
+  $(window).resize ->
+    textareaResize()
 
   # credit: http://davidwalsh.name/fullscreen
   launchFullScreen = (container) ->
@@ -69,3 +54,12 @@ $ ->
       el.removeClass('expand').addClass('shrink')
     else if el.hasClass('shrink')
       el.removeClass('shrink').addClass('expand')
+
+
+  $('body.editor textarea').on 'keyup propertychange paste', ->
+    text  = $(@).val()
+    words = text.trim().replace(/^\s+/gi, ' ').split(' ')
+    words = if words.length == 1 and words[0] == '' then words = 0 else words.length
+
+    $('span.characters').text("#{text.length} Characters")
+    $('span.words').text("#{words} Words")
