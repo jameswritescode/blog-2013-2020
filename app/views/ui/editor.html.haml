@@ -1,6 +1,12 @@
-.tools
-  .fullscreen.ion-arrow-expand
-  .contrast.ion-contrast.contrast-light
+.menu
+  .btn-group
+    %button.btn.btn-default.dropdown-toggle{ type: :button, 'data-toggle' => :dropdown }
+      %i.ion-navicon-round
+
+    %ul.dropdown-menu.pull-right
+      %li.fullscreen.expand= link_to 'Full Screen', '#'
+      %li.divider
+      %li.contrast.contrast-light= link_to 'Change Contrast', '#'
 
 %form
   = text_field_tag :title, nil, placeholder: 'Buzzword filled title'
@@ -11,3 +17,8 @@
       %br
 
     = text_area_tag :content, nil, placeholder: 'Try to write something interesting'
+
+.bottom
+  .counts
+    %span.words 0 Words
+    %span.characters 0 Characters

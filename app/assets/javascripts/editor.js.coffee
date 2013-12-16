@@ -1,5 +1,5 @@
 $ ->
-  $('div.contrast').on 'click', ->
+  $('li.contrast').on 'click', ->
     if $(@).hasClass('contrast-light')
       $(@).removeClass('contrast-light').addClass('contrast-dark')
       $('body.editor').addClass('contrast-dark')
@@ -8,6 +8,8 @@ $ ->
       $(@).removeClass('contrast-dark').addClass('contrast-light')
       $('body.editor').removeClass('contrast-dark')
       $('html').css('background-color', 'white')
+
+    return false
 
   # credit: http://alistapart.com/article/expanding-text-areas-made-elegant
   makeExpandingArea = (container) ->
@@ -52,16 +54,18 @@ $ ->
     else if document.webkitCancelFullScreen
       document.webkitCancelFullScreen()
 
-  $('div.fullscreen').on 'click', ->
-    if $(@).hasClass('ion-arrow-expand')
+  $('li.fullscreen').on 'click', ->
+    if $(@).hasClass('expand')
       launchFullScreen(document.documentElement)
-    else if $(@).hasClass('ion-arrow-shrink')
+    else if $(@).hasClass('shrink')
       cancelFullScreen()
 
-  $(document).on 'webkitfullscreenchange mozfullscreenchange fullscreenchange', ->
-    el = $('div.fullscreen')
+    return false
 
-    if el.hasClass('ion-arrow-expand')
-      el.removeClass('ion-arrow-expand').addClass('ion-arrow-shrink')
-    else if el.hasClass('ion-arrow-shrink')
-      el.removeClass('ion-arrow-shrink').addClass('ion-arrow-expand')
+  $(document).on 'webkitfullscreenchange mozfullscreenchange fullscreenchange', ->
+    el = $('li.fullscreen')
+
+    if el.hasClass('expand')
+      el.removeClass('expand').addClass('shrink')
+    else if el.hasClass('shrink')
+      el.removeClass('shrink').addClass('expand')

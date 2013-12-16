@@ -27,6 +27,7 @@ gem 'decent_exposure'
 gem 'rails-observers'
 gem 'actionpack-page_caching'
 gem 'settingslogic'
+gem 'bootstrap-sass', '3.0.3.0'
 
 group :development do
   gem 'capistrano'
