@@ -40,20 +40,20 @@ $ ->
       document.webkitCancelFullScreen()
 
   $('li.fullscreen').on 'click', ->
-    if $(@).hasClass('expand')
+    if $(@).find('i').hasClass('ion-arrow-expand')
       launchFullScreen(document.documentElement)
-    else if $(@).hasClass('shrink')
+    else if $(@).find('i').hasClass('ion-arrow-shrink')
       cancelFullScreen()
 
     return false
 
   $(document).on 'webkitfullscreenchange mozfullscreenchange fullscreenchange', ->
-    el = $('li.fullscreen')
+    el = $('li.fullscreen').find('i')
 
-    if el.hasClass('expand')
-      el.removeClass('expand').addClass('shrink')
-    else if el.hasClass('shrink')
-      el.removeClass('shrink').addClass('expand')
+    if el.hasClass('ion-arrow-expand')
+      el.removeClass('ion-arrow-expand').addClass('ion-arrow-shrink')
+    else if el.hasClass('ion-arrow-shrink')
+      el.removeClass('ion-arrow-shrink').addClass('ion-arrow-expand')
 
 
   $('body.editor textarea').on 'keyup propertychange paste', ->

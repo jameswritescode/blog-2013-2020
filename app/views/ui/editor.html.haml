@@ -4,9 +4,15 @@
       %i.ion-navicon-round
 
     %ul.dropdown-menu.pull-right
-      %li.fullscreen.expand= link_to 'Full Screen', '#'
+      %li.fullscreen
+        = link_to '#' do
+          %i.ion-arrow-expand
+          Full Screen
       %li.divider
-      %li.contrast.contrast-light= link_to 'Change Contrast', '#'
+      %li.contrast.contrast-light
+        = link_to '#' do
+          %i.ion-contrast
+          Contrast
 
 %form
   = text_field_tag :title, nil, placeholder: 'Buzzword filled title'
