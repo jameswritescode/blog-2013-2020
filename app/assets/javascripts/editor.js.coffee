@@ -63,3 +63,10 @@ $ ->
 
     $('span.characters').text("#{text.length} Characters")
     $('span.words').text("#{words} Words")
+
+
+  $('body.editor textarea').on 'focus keydown', ->
+    $('body.editor div.menu, body.editor div.counts').addClass('editor-active')
+
+  $('body.editor').on 'mousemove', ->
+    $('body.editor div.menu, body.editor div.counts').removeClass('editor-active')
