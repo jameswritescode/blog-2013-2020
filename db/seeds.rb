@@ -4,9 +4,9 @@ User.create(
   password_confirmation: 'password'
 )
 
-FactoryGirl.create(:post)
+FactoryGirl.create(:post, published: true)
 
-FactoryGirl.create(:post,
+FactoryGirl.create(:post, published: true,
   content: <<-MARKDOWN
 # #{Faker::Lorem.words(5).join(' ')}
 ## #{Faker::Lorem.words(5).join(' ')}
@@ -23,7 +23,7 @@ FactoryGirl.create(:post,
   MARKDOWN
 )
 
-FactoryGirl.create(:post,
+FactoryGirl.create(:post, published: true,
   content: <<-RUBY
 #{Faker::Lorem.paragraph}
 
