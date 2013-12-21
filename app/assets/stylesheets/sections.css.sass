@@ -1,4 +1,13 @@
-@import sections/posts/header
-@import sections/posts/footer
-@import sections/posts/post
-@import sections/admin/editor
+body.sign-in
+  @import sections/login
+
+body.main
+  @import sections/posts/header
+  @import sections/posts/footer
+  @import sections/posts/post
+
+body.editor
+  @import sections/admin/editor
+
+body.admin
+  @import sections/admin/dashboard

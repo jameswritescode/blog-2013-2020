@@ -1,0 +1,25 @@
+!!!
+%html
+  %head
+    %title Blog Administration
+    = stylesheet_link_tag    'http://fonts.googleapis.com/css?family=Lato:300,400,700'
+    = stylesheet_link_tag    :application, media: :all, 'data-turbolinks-track' => true
+    = javascript_include_tag :application, 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body.admin.bootstrap-enabled
+    %nav.navbar.navbar-default.navbar-fixed-top
+      .navbar-header
+        %button.navbar-toggle{ data: { toggle: :collapse, target: '#bs-collapse-menu' } }
+          %span.sr-only Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+
+        = link_to 'Blog', '#', class: 'navbar-brand'
+
+      #bs-collapse-menu.collapse.navbar-collapse
+        %ul.nav.navbar-nav
+          %li= link_to 'Test', '#'
+
+        %ul.nav.navbar-nav.navbar-right
+          %li= link_to 'Sign out', destroy_user_session_path, class: 'btn btn-default navbar-btn'
