@@ -15,11 +15,11 @@
           %span.icon-bar
           %span.icon-bar
 
-        = link_to 'Blog', '#', class: 'navbar-brand'
+        = link_to 'Dashboard', '#', class: 'navbar-brand'
 
       #bs-collapse-menu.collapse.navbar-collapse
-        %ul.nav.navbar-nav
-          %li= link_to 'Test', '#'
+        %form.navbar-form.navbar-left
+          .form-group= text_field_tag 'new-post', nil, class: 'form-control col-5', placeholder: "What will you write today?", autofocus: true
+        = link_to 'Sign out', destroy_user_session_path, class: 'btn btn-default navbar-btn pull-right'
 
-        %ul.nav.navbar-nav.navbar-right
-          %li= link_to 'Sign out', destroy_user_session_path, class: 'btn btn-default navbar-btn'
+    = yield
