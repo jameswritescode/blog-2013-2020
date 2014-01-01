@@ -30,7 +30,7 @@ module Blog
 
     config.to_prepare do
       Devise::SessionsController.layout   'devise'
-      Admin::ApplicationController.layout 'admin'
+      DashboardController.layout 'dashboard'
     end
 
     config.active_record.observers = :sitemap_observer

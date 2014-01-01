@@ -5,8 +5,7 @@ class UiController < ApplicationController
 
   def choose_layout
    case action_name
-   when /^editor/ then 'editor'
-   when /^admin_/ then 'admin'
+   when /^dashboard/ then 'dashboard'
    else 'ui'
    end
   end
