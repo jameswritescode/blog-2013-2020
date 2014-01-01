@@ -2,11 +2,11 @@ $ ->
   $('li.contrast').on 'click', ->
     if $(@).hasClass('contrast-light')
       $(@).removeClass('contrast-light').addClass('contrast-dark')
-      $('body.editor').addClass('contrast-dark')
+      $('body.dashboard').addClass('contrast-dark')
       $('html').css('background-color', 'black')
     else if $(@).hasClass('contrast-dark')
       $(@).removeClass('contrast-dark').addClass('contrast-light')
-      $('body.editor').removeClass('contrast-dark')
+      $('body.dashboard').removeClass('contrast-dark')
       $('html').css('background-color', 'white')
 
     return false
@@ -14,7 +14,7 @@ $ ->
   textareaResize = ->
     textareaSize = document.documentElement.clientHeight - 100
 
-    $('body.editor textarea').css('height', "#{textareaSize}px")
+    $('body.dashboard textarea').css('height', "#{textareaSize}px")
 
   $(document).ready ->
     textareaResize()
@@ -56,7 +56,7 @@ $ ->
       el.removeClass('ion-arrow-shrink').addClass('ion-arrow-expand')
 
 
-  $('body.editor textarea').on 'keyup propertychange paste', ->
+  $('body.dashboard textarea').on 'keyup propertychange paste', ->
     text  = $(@).val()
     words = text.trim().replace(/^\s+/gi, ' ').split(' ')
     words = if words.length == 1 and words[0] == '' then words = 0 else words.length
@@ -65,8 +65,8 @@ $ ->
     $('span.words').text("#{words} Words")
 
 
-  $('body.editor textarea').on 'focus keydown', ->
-    $('body.editor div.menu, body.editor div.counts').addClass('editor-active')
+  $('body.dashboard textarea').on 'focus keydown', ->
+    $('body.dashboard div.menu, body.dashboard div.counts').addClass('editor-active')
 
-  $('body.editor').on 'mousemove', ->
-    $('body.editor div.menu, body.editor div.counts').removeClass('editor-active')
+  $('body.dashboard').on 'mousemove', ->
+    $('body.dashboard div.menu, body.dashboard div.counts').removeClass('editor-active')

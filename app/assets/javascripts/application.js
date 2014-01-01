@@ -16,7 +16,7 @@
 //= require turbolinks
 //= require nprogress
 //= require devise
-//= require editor
+//= require dashboard
 
 NProgress.configure({ showSpinner: false })
 $(document).on('page:fetch', function() { NProgress.start(); });
