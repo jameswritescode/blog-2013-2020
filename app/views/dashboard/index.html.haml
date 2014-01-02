@@ -1,0 +1,30 @@
+.errors
+  %ul
+    - flash.each do |key, value|
+      %li= "#{key}: #{value}"
+
+.menu
+  .btn-group
+    %button.btn.btn-default.dropdown-toggle{ type: :button, 'data-toggle' => :dropdown }
+      %i.ion-navicon-round
+
+    %ul.dropdown-menu.pull-right
+      %li= link_to 'Publish', 'javascript:document.forms[0].submit()'
+      %li.divider
+      %li.fullscreen
+        = link_to '#' do
+          %i.ion-arrow-expand
+          Full Screen
+      %li.contrast.contrast-light
+        = link_to '#' do
+          %i.ion-contrast
+          Contrast
+
+= form_for(post) do |f|
+  = f.text_field :title, placeholder: 'Buzzword filled title'
+  = f.text_area :content, placeholder: 'Try to write something interesting'
+
+.bottom
+  .counts
+    %span.words 0 Words
+    %span.characters 0 Characters
