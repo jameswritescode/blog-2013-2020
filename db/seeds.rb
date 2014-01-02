@@ -24,8 +24,12 @@ FactoryGirl.create(:post, published: true,
 )
 
 FactoryGirl.create(:post, published: true,
-  content: <<-RUBY
+  content: <<-MARKDOWN
 #{Faker::Lorem.paragraph}
+
+* #{Faker::Lorem.sentence}
+* #{Faker::Lorem.sentence}
+* #{Faker::Lorem.sentence}
 
 ```ruby
 class Person
@@ -40,6 +44,10 @@ class Person
 end
 ```
 
+1. #{Faker::Lorem.sentence}
+2. #{Faker::Lorem.sentence}
+3. #{Faker::Lorem.sentence}
+
 #{Faker::Lorem.paragraph}
-  RUBY
+  MARKDOWN
 )
