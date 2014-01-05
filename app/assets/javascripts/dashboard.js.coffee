@@ -59,7 +59,7 @@ $ ->
   $('body.dashboard textarea').on 'keyup propertychange paste', ->
     text  = $(@).val()
     words = text.trim().replace(/^\s+/gi, ' ').split(' ')
-    words = if words.length == 1 and words[0] == '' then words = 0 else words.length
+    words = if words.length is 1 and words[0] is '' then words = 0 else words.length
 
     $('span.characters').text("#{text.length} Characters")
     $('span.words').text("#{words} Words")
@@ -85,9 +85,21 @@ $ ->
         el.attr('action', main)
 
   $('body.dashboard div.posts li').on 'click', ->
-    slug = $(@).data('slug')
+    slug     = $(@).data('slug')
+    title    = $('input[name="post[title]"]')
+    textarea = $('textarea[name="post[content]"]')
 
-    $.get "/#{slug}.json", (data) ->
-      form_action('patch', data.id)
-      $('input[name="post[title]"]').val(data.title)
-      $('textarea[name="post[content]"]').val(data.content)
+    if slug is undefined
+      form_action('create')
+      title.val('')
+      textarea.val('')
+    else
+      $.get "/#{slug}.json", (data) ->
+        form_action('patch', data.id)
+        title.val(data.title)
+        textarea.val(data.content)
+
+  $(document).on 'keyup keydown keypress', (event) ->
+    document.forms[0].submit() if event.metaKey and event.keyCode is 13
+
+  return
