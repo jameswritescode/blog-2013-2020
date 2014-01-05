@@ -10,6 +10,10 @@ class Post < ActiveRecord::Base
     content.split.length
   end
 
+  def idea?
+    !published
+  end
+
   def read_time
     (word_count / 180).floor
   end

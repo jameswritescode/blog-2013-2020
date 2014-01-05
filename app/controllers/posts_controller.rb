@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :update, :destroy]
+  before_action :post_exist_or_can_be_viewed?, only: [:show]
 
   expose(:post, attributes: :post_params)
 
@@ -13,6 +14,8 @@ class PostsController < ApplicationController
       format.html
       format.json { render json: post } if current_user
     end
+  rescue
+    redirect_to root_path
   end
 
   def create
@@ -24,6 +27,14 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def post_exist_or_can_be_viewed?
+    post = Post.where(slug: params[:id]).first
+
+    if post.nil? || post.idea? && !current_user
+      redirect_to root_path
+    end
+  end
 
   def generate_slug(title)
     title.parameterize[0...30]
