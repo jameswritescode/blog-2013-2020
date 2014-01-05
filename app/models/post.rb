@@ -14,6 +14,10 @@ class Post < ActiveRecord::Base
     !published
   end
 
+  def status
+    published? ? 'published' : 'idea'
+  end
+
   def read_time
     (word_count / 180).floor
   end

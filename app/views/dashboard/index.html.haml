@@ -11,8 +11,8 @@
       - posts.each do |post|
         %li{ 'data-slug' => post.slug }
           %strong= post.title.size > 65 ? post.title[0...65] + '...' : post.title
-          %br
-          .post-stats== Created #{time_ago_in_words(post.created_at)} ago
+          .post-created== Created #{time_ago_in_words(post.created_at)} ago
+          .post-status= post.status
 
         - unless post == Post.last
           %li.divider
