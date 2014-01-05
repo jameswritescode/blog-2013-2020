@@ -1,6 +1,8 @@
 class Post < ActiveRecord::Base
   validates :slug, uniqueness: true, presence: true
 
+  default_scope { order('created_at DESC') }
+
   scope :published, -> { where(published: true).order('id DESC') }
   scope :ideas, -> { where(published: false) }
 

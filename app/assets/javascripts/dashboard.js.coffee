@@ -66,7 +66,28 @@ $ ->
 
 
   $('body.dashboard textarea').on 'focus keydown', ->
-    $('body.dashboard div.menu, body.dashboard div.counts').addClass('editor-active')
+    $('body.dashboard div.menu, body.dashboard div.counts, body.dashboard div.posts').addClass('editor-active')
 
   $('body.dashboard').on 'mousemove', ->
-    $('body.dashboard div.menu, body.dashboard div.counts').removeClass('editor-active')
+    $('body.dashboard div.menu, body.dashboard div.counts, body.dashboard div.posts').removeClass('editor-active')
+
+  form_action = (type, path) ->
+    main = '/posts'
+    el   = $('form')
+
+    el.find('input[name="_method"]').remove()
+
+    switch type
+      when 'patch'
+        el.attr('action', "#{main}/#{path}")
+        el.find('div').append('<input name="_method" type="hidden" value="patch" />')
+      when 'create'
+        el.attr('action', main)
+
+  $('body.dashboard div.posts li').on 'click', ->
+    slug = $(@).data('slug')
+
+    $.get "/#{slug}.json", (data) ->
+      form_action('patch', data.id)
+      $('input[name="post[title]"]').val(data.title)
+      $('textarea[name="post[content]"]').val(data.content)

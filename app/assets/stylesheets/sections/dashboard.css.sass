@@ -9,7 +9,7 @@
     div.counts
       color: white
 
-  div.menu
+  div.menu, div.posts
     button
       background-color: white
       color: black
@@ -73,7 +73,10 @@ textarea
   padding-top: 1rem
   color: black
   box-sizing: border-box
-  overflow: hidden
+  overflow: auto
+
+  &::-webkit-scrollbar
+    display: none
 
 textarea, input[type='text']
   font-family: Lora, serif
@@ -92,9 +95,28 @@ form
   margin: 1em auto 0 auto
 
 div.menu
-  display: inline
   float: right
   margin-right: 1em
+
+  li
+    font-family: Roboto
+    text-transform: uppercase
+
+div.posts
+  float: left
+  margin-left: 1em
+
+  ul.dropdown-menu
+    min-width: 500px
+
+    li
+      font:
+        size: 15px
+        family: Lato, serif
+
+
+div.menu, div.posts
+  display: inline
   transition: opacity .5s ease-in-out
 
   &.editor-active
@@ -108,10 +130,6 @@ div.menu
     &:hover, &:focus
       background-color: black
       color: white
-
-  li
-    font-family: Roboto
-    text-transform: uppercase
 
   div.btn-group
     &.open

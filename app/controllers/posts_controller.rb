@@ -1,21 +1,22 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:edit, :create, :update, :destroy]
+  before_action :authenticate_user!, only: [:create, :update, :destroy]
 
   expose(:post, attributes: :post_params)
 
   def index
-    self.post = Post.where(slug: params[:id]).first
   end
 
   def show
     self.post = Post.where(slug: params[:id]).first
+
+    respond_to do |format|
+      format.html
+      format.json { render json: post } if current_user
+    end
   end
 
   def create
     save_post
-  end
-
-  def edit
   end
 
   def update
@@ -25,7 +26,7 @@ class PostsController < ApplicationController
   private
 
   def generate_slug(title)
-    title.parameterize
+    title.parameterize[0...30]
   end
 
   def save_post
@@ -39,6 +40,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :content)
+    params.require(:post).permit(:title, :content, :published)
   end
 end

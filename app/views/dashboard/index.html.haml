@@ -1,3 +1,15 @@
+.posts
+  .btn-group
+    %button.btn.btn-default.dropdown-toggle{ type: :button, 'data-toggle' => :dropdown }
+      %i.ion-filing
+
+    %ul.dropdown-menu
+      - posts.each do |post|
+        %li{ 'data-slug' => post.slug }= post.title.size > 70 ? post.title[0...70] + '...' : post.title
+
+        - unless post == Post.last
+          %li.divider
+
 .menu
   .btn-group
     %button.btn.btn-default.dropdown-toggle{ type: :button, 'data-toggle' => :dropdown }
