@@ -11,7 +11,15 @@
       - posts.each do |post|
         %li{ 'data-slug' => post.slug }
           %strong= post.title.size > 65 ? post.title[0...65] + '...' : post.title
-          .post-created== Created #{time_ago_in_words(post.created_at)} ago
+          .post-created
+            == Created
+            %abbr{ title: post.created_at}== #{time_ago_in_words(post.created_at)}
+            ago
+
+            - if post.created_at != post.updated_at
+              == &mdash; Updated
+              %abbr{ title: post.updated_at }== #{time_ago_in_words(post.updated_at)}
+              ago
           .post-status= post.status
 
         - unless post == Post.last
@@ -23,6 +31,7 @@
       %i.ion-navicon-round
 
     %ul.dropdown-menu.pull-right
+      %li.preview= link_to 'Preview', 'javascript:void(0)'
       %li.publish= link_to 'Publish', 'javascript:void(0)'
       %li.divider
       %li.fullscreen
@@ -34,11 +43,12 @@
           %i.ion-contrast
           Contrast
 
-= form_for(post) do |f|
+= form_for(post, remote: true, authenticity_token: true) do |f|
   = f.text_field :title, placeholder: 'Buzzword filled title'
   = f.text_area :content, placeholder: 'Try to write something interesting'
 
 .bottom
+  .notices
   .counts
     %span.words 0 Words
     %span.characters 0 Characters

@@ -69,13 +69,15 @@ $ ->
     $('span.words').text("#{words} Words")
 
 
+  activeAreas = $('body.dashboard div.menu, body.dashboard div.counts, body.dashboard div.posts, body.dashboard div.notices')
+
   $('body.dashboard textarea').on 'focus keydown', ->
-    $('body.dashboard div.menu, body.dashboard div.counts, body.dashboard div.posts').addClass('editor-active')
+    activeAreas.addClass('editor-active')
 
   $('body.dashboard').on 'mousemove', ->
-    $('body.dashboard div.menu, body.dashboard div.counts, body.dashboard div.posts').removeClass('editor-active')
+    activeAreas.removeClass('editor-active')
 
-  form_action = (type, path) ->
+  formAction = (type, path) ->
     main = '/posts'
     el   = $('form')
 
@@ -94,16 +96,54 @@ $ ->
     textarea = $('textarea[name="post[content]"]')
 
     if slug is undefined
-      form_action('create')
+      formAction('create')
       title.val('')
       textarea.val('')
     else
       $.get "/#{slug}.json", (data) ->
-        form_action('patch', data.id)
+        formAction('patch', data.id)
         title.val(data.title)
         textarea.val(data.content)
+        $('body.dashboard li.preview').find('a').attr('href', "/#{slug}").attr('target', '_blank')
+
+  save_post = ->
+    $('form').on 'submit', (event) ->
+      event.preventDefault()
+      submit = $(@).serialize()
+
+      $.ajax
+        url: $(@).attr('action')
+        type: 'POST'
+        data: submit
+        dataType: 'json'
+      .success (data) ->
+        $('body.dashboard div.notices').trigger('post_saved')
+      .error (data) ->
+        $('body.dashboard div.notices').text('Not Saved')
+
+    $('form').submit()
+    $('form').off('submit')
+
+  $('body.dashboard div.notices').on 'post_saved', ->
+    $(@).text('Saved')
 
   $(document).on 'keyup keydown keypress', (event) ->
     document.forms[0].submit() if event.metaKey and event.keyCode is 13
+
+    if event.metaKey and event.keyCode is 83
+      event.preventDefault()
+
+      save_post()
+
+  typingTimer = false
+
+  $('body.dashboard textarea').on 'keyup', ->
+    $('body.dashboard div.notices').text('Saving...')
+
+    clearTimeout(typingTimer)
+
+    typingTimer = setTimeout ->
+      save_post()
+    , 400
 
   return

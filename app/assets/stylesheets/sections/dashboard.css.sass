@@ -6,7 +6,7 @@
   div.bottom
     background-color: black
 
-    div.counts
+    div.counts, div.notices
       color: white
 
   div.menu, div.posts
@@ -44,15 +44,24 @@ div.bottom
   bottom: 0
   width: 100%
   background-color: white
+  font:
+    family: Roboto
+    size: 14px
+  text-transform: uppercase
+  transition: opacity .5s ease-in-out
+  color: black
+
+  div.notices, div.counts
+    display: inline-block
+
+  div.notices
+    margin: 0 0 1em 1em
+
+    &.editor-active
+      opacity: 0.1
 
   div.counts
-    transition: opacity .5s ease-in-out
     float: right
-    text-transform: uppercase
-    font:
-      size: 14px
-      family: Roboto
-    color: black
     margin: 0 1em 1em 0
 
     &.editor-active
