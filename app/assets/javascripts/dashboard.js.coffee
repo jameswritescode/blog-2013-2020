@@ -173,4 +173,19 @@ $ ->
         save_post()
       , 400
 
+
+  $('body.dashboard textarea').on 'keydown', (event) ->
+    if event.keyCode is 9
+      event.preventDefault()
+
+      el     = $(@)
+      start  = @selectionStart
+      end    = @selectionEnd
+
+      el.val("#{el.val().substring(0, start)}  #{el.val().substring(end)}")
+
+      @selectionStart = @selectionEnd = start + 2
+
+      return false
+
   return
