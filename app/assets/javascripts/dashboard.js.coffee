@@ -55,6 +55,10 @@ $ ->
     else if el.hasClass('ion-arrow-shrink')
       el.removeClass('ion-arrow-shrink').addClass('ion-arrow-expand')
 
+  $('body.dashboard li').on 'click', ->
+    if $(@).hasClass('publish')
+      $('form').append('<input name="post[published]" type="hidden" value="true" />')
+      document.forms[0].submit()
 
   $('body.dashboard textarea').on 'keyup propertychange paste', ->
     text  = $(@).val()
