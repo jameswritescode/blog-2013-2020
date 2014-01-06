@@ -74,14 +74,16 @@ $ ->
 
         $('body.dashboard li').first().click()
 
-  $('body.dashboard textarea').on 'keyup propertychange paste', ->
-    text  = $(@).val()
+  counts = (el) ->
+    text  = el.val()
     words = text.trim().replace(/^\s+/gi, ' ').split(' ')
     words = if words.length is 1 and words[0] is '' then words = 0 else words.length
 
     $('span.characters').text("#{text.length} Characters")
     $('span.words').text("#{words} Words")
 
+  $('body.dashboard textarea').on 'keyup propertychange paste', ->
+    counts($(@))
 
   activeAreas = $('body.dashboard div.menu, body.dashboard div.counts, body.dashboard div.posts, body.dashboard div.notices')
 
@@ -116,6 +118,7 @@ $ ->
       formAction('create')
       title.val('')
       textarea.val('')
+      counts(textarea)
 
       $('body.dashboard li.preview').find('a').attr('href', 'javascript:void(0)')
     else
@@ -123,6 +126,7 @@ $ ->
         formAction('patch', data.id)
         title.val(data.title)
         textarea.val(data.content)
+        counts(textarea)
 
         $('body.dashboard li.preview').find('a').attr('href', "/#{slug}")
 
