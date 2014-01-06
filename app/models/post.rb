@@ -3,12 +3,8 @@ class Post < ActiveRecord::Base
 
   default_scope { order('created_at DESC') }
 
-  scope :published, -> { where(published: true).order('id DESC') }
+  scope :published, -> { where(published: true) }
   scope :ideas, -> { where(published: false) }
-
-  def word_count
-    content.split.length
-  end
 
   def idea?
     !published
@@ -20,6 +16,10 @@ class Post < ActiveRecord::Base
 
   def read_time
     (word_count / 180).floor
+  end
+
+  def word_count
+    content.split.length
   end
 
   def to_param

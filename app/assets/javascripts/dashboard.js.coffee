@@ -116,13 +116,15 @@ $ ->
       formAction('create')
       title.val('')
       textarea.val('')
+
+      $('body.dashboard li.preview').find('a').attr('href', 'javascript:void(0)')
     else
       $.get "/#{slug}.json", (data) ->
         formAction('patch', data.id)
         title.val(data.title)
         textarea.val(data.content)
 
-        $('body.dashboard li.preview').find('a').attr('href', "/#{slug}").attr('target', '_blank')
+        $('body.dashboard li.preview').find('a').attr('href', "/#{slug}")
 
   save_post = ->
     $('form').on 'submit', (event) ->
@@ -147,6 +149,8 @@ $ ->
     $(@).text('Saved')
 
     formAction('patch', data.id)
+
+    $('body.dashboard li.preview').find('a').attr('href', "/#{data.slug}")
 
   $(document).on 'keyup keydown keypress', (event) ->
     document.forms[0].submit() if event.metaKey and event.keyCode is 13
