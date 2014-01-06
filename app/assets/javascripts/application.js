@@ -17,6 +17,8 @@
 //= require nprogress
 //= require devise
 //= require dashboard
+//= require dashboard/requests
+//= require dashboard/events
 
 NProgress.configure({ showSpinner: false })
 $(document).on('page:fetch', function() { NProgress.start(); });
