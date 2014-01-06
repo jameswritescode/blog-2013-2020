@@ -1,7 +1,7 @@
 Blog::Application.routes.draw do
   devise_for :users
 
-  resources :posts, only: [:edit, :create, :update, :destroy]
+  resources :posts, only: [:create, :update, :destroy]
 
   get '/ui/(:action)', controller: :ui if Rails.env.development?
   get '/sitemap.xml', to: 'sitemap#index',   as: :sitemap, defaults: { format: :xml }
