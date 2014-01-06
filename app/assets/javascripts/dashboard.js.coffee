@@ -163,12 +163,13 @@ $ ->
   typingTimer = false
 
   $('body.dashboard textarea').on 'keyup', ->
-    $('body.dashboard div.notices').text('Saving...')
+    unless $('input[name="post[title]"]').val() is ''
+      $('body.dashboard div.notices').text('Saving...')
 
-    clearTimeout(typingTimer)
+      clearTimeout(typingTimer)
 
-    typingTimer = setTimeout ->
-      save_post()
-    , 400
+      typingTimer = setTimeout ->
+        save_post()
+      , 400
 
   return
