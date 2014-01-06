@@ -4,26 +4,7 @@
       %i.ion-filing
 
     %ul.dropdown-menu
-      %li
-        %strong.new Create new post...
-      %li.divider
-
-      - posts.each do |post|
-        %li{ 'data-slug' => post.slug }
-          %strong= post.title.size > 65 ? post.title[0...65] + '...' : post.title
-          .post-created
-            == Created
-            %abbr{ title: post.created_at}== #{time_ago_in_words(post.created_at)}
-            ago
-
-            - if post.created_at != post.updated_at
-              == &mdash; Updated
-              %abbr{ title: post.updated_at }== #{time_ago_in_words(post.updated_at)}
-              ago
-          .post-status= post.status
-
-        - unless post == Post.last
-          %li.divider
+      = render partial: 'posts'
 
 .menu
   .btn-group

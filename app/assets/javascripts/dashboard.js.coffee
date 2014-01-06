@@ -104,7 +104,10 @@ $ ->
       when 'create'
         el.attr('action', main)
 
-  $('body.dashboard div.posts li').on 'click', ->
+  $(document).on 'click', 'body.dashboard div.posts button', ->
+    $('body.dashboard div.posts ul').load('/dashboard/post_listing')
+
+  $(document).on 'click', 'body.dashboard div.posts li', ->
     slug     = $(@).data('slug')
     title    = $('input[name="post[title]"]')
     textarea = $('textarea[name="post[content]"]')
