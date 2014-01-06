@@ -40,25 +40,27 @@ $ ->
       document.webkitCancelFullScreen()
 
   $('li.fullscreen').on 'click', ->
-    if $(@).find('i').hasClass('ion-arrow-expand')
+    if $(@).hasClass('expand')
       launchFullScreen(document.documentElement)
-    else if $(@).find('i').hasClass('ion-arrow-shrink')
+    else if $(@).hasClass('shrink')
       cancelFullScreen()
 
     return false
 
   $(document).on 'webkitfullscreenchange mozfullscreenchange fullscreenchange', ->
-    el = $('li.fullscreen').find('i')
+    el = $('li.fullscreen')
 
-    if el.hasClass('ion-arrow-expand')
-      el.removeClass('ion-arrow-expand').addClass('ion-arrow-shrink')
-    else if el.hasClass('ion-arrow-shrink')
-      el.removeClass('ion-arrow-shrink').addClass('ion-arrow-expand')
+    if el.hasClass('expand')
+      el.removeClass('expand').addClass('shrink')
+    else if el.hasClass('shrink')
+      el.removeClass('shrink').addClass('expand')
 
   $('body.dashboard li').on 'click', ->
     if $(@).hasClass('publish')
       $('form').append('<input name="post[published]" type="hidden" value="true" />')
       document.forms[0].submit()
+    else if $(@).hasClass('save')
+      save_post()
     else if $(@).hasClass('destroy')
       $.ajax
         url: $('form').attr('action')
