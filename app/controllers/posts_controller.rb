@@ -23,7 +23,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    save_post
+    save_post(update: true)
   end
 
   def destroy
@@ -37,6 +37,19 @@ class PostsController < ApplicationController
 
   private
 
+  def save_post(opts = {})
+    post.slug = generate_slug(post.title)
+
+    respond_to do |format|
+      if post.save
+        format.json { render json: post }
+        format.html { redirect_to(read_post_path(post)) } if opts[:update]
+      else
+        format.json { render json: { errors: post.errors.full_messages } }
+      end
+    end
+  end
+
   def post_exist_or_can_be_viewed?
     post = Post.where(slug: params[:id]).first
 
@@ -47,16 +60,6 @@ class PostsController < ApplicationController
 
   def generate_slug(title)
     title.parameterize
-  end
-
-  def save_post
-    post.slug = generate_slug(post.title)
-
-    if post.save
-      redirect_to(read_post_path(post))
-    else
-      redirect_to dashboard_path
-    end
   end
 
   def post_params

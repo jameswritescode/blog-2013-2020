@@ -66,16 +66,13 @@ $ ->
         url: $('form').attr('action')
         type: 'DELETE'
         data: { '_method': 'destroy' }
-        dataType: 'json'
+        dataType: 'JSON'
       .success (data) ->
-        $('input[name="post[title]"]').val('')
-        $('textarea[name="post[content]"]').val('')
-
         el = $("li[data-slug='#{data.slug}']")
         el.next().remove()
         el.remove()
 
-        formAction('create')
+        $('body.dashboard li').first().click()
 
   $('body.dashboard textarea').on 'keyup propertychange paste', ->
     text  = $(@).val()
@@ -127,23 +124,24 @@ $ ->
         $('body.dashboard li.preview').find('a').attr('href', "/#{slug}")
 
   save_post = ->
-    $('form').on 'submit', (event) ->
-      event.preventDefault()
-      submit = $(@).serialize()
+    submit = $('form').serialize()
 
-      $.ajax
-        url: $(@).attr('action')
-        type: 'POST'
-        data: submit
-        dataType: 'json'
-      .success (data) ->
-        $('body.dashboard div.notices').trigger('post_saved', [data])
-      .error (data) ->
+    $.ajax
+      url: $('form').attr('action')
+      type: 'POST'
+      data: submit
+      dataType: 'JSON'
+    .success (data) ->
+      console.log('save sent')
+      if data.errors
         $('body.dashboard div.notices').text('Not Saved')
-        console.log(data)
+      else
+        $('body.dashboard div.notices').trigger('post_saved', [data])
 
-    $('form').submit()
-    $('form').off('submit')
+      console.log(data)
+    .error (data) ->
+      $('body.dashboard div.notices').text('Not Saved')
+      console.log(data)
 
   $('body.dashboard div.notices').on 'post_saved', (event, data) ->
     $(@).text('Saved')
