@@ -26,6 +26,15 @@ class PostsController < ApplicationController
     save_post
   end
 
+  def destroy
+    post = Post.find(params[:id])
+    post.destroy
+
+    respond_to do |format|
+      format.json { render json: post }
+    end
+  end
+
   private
 
   def post_exist_or_can_be_viewed?

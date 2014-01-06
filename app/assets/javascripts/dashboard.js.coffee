@@ -59,6 +59,21 @@ $ ->
     if $(@).hasClass('publish')
       $('form').append('<input name="post[published]" type="hidden" value="true" />')
       document.forms[0].submit()
+    else if $(@).hasClass('destroy')
+      $.ajax
+        url: $('form').attr('action')
+        type: 'DELETE'
+        data: { '_method': 'destroy' }
+        dataType: 'json'
+      .success (data) ->
+        $('input[name="post[title]"]').val('')
+        $('textarea[name="post[content]"]').val('')
+
+        el = $("li[data-slug='#{data.slug}']")
+        el.next().remove()
+        el.remove()
+
+        formAction('create')
 
   $('body.dashboard textarea').on 'keyup propertychange paste', ->
     text  = $(@).val()
@@ -104,6 +119,7 @@ $ ->
         formAction('patch', data.id)
         title.val(data.title)
         textarea.val(data.content)
+
         $('body.dashboard li.preview').find('a').attr('href', "/#{slug}").attr('target', '_blank')
 
   save_post = ->
@@ -117,15 +133,18 @@ $ ->
         data: submit
         dataType: 'json'
       .success (data) ->
-        $('body.dashboard div.notices').trigger('post_saved')
+        $('body.dashboard div.notices').trigger('post_saved', [data])
       .error (data) ->
         $('body.dashboard div.notices').text('Not Saved')
+        console.log(data)
 
     $('form').submit()
     $('form').off('submit')
 
-  $('body.dashboard div.notices').on 'post_saved', ->
+  $('body.dashboard div.notices').on 'post_saved', (event, data) ->
     $(@).text('Saved')
+
+    formAction('patch', data.id)
 
   $(document).on 'keyup keydown keypress', (event) ->
     document.forms[0].submit() if event.metaKey and event.keyCode is 13
