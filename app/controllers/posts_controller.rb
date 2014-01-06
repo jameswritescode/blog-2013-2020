@@ -46,7 +46,7 @@ class PostsController < ApplicationController
   end
 
   def generate_slug(title)
-    title.parameterize[0...30]
+    title.parameterize
   end
 
   def save_post
