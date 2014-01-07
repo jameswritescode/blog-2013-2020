@@ -4,3 +4,5 @@
 
   - if action_name == 'show'
     %p== You should follow me on twitter #{link_to 'here', "https://twitter.com/#{Blog.config.twitter}"}.
+
+    - content_for(:title) { post.title }
