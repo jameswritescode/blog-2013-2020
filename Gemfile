@@ -29,6 +29,7 @@ gem 'actionpack-page_caching'
 gem 'settingslogic'
 gem 'bootstrap-sass', '3.0.3.0'
 gem 'pg'
+gem 'capistrano'
 
 group :development do
   gem 'capistrano'
