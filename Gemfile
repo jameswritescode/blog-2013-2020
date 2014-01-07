@@ -30,6 +30,8 @@ gem 'settingslogic'
 gem 'bootstrap-sass', '3.0.3.0'
 gem 'pg'
 gem 'capistrano'
+gem 'capistrano-rails'
+gem 'capistrano-bundler'
 
 group :development do
   gem 'capistrano'
