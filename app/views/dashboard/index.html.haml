@@ -23,7 +23,7 @@
       %li.fullscreen.expand= link_to 'Full Screen', 'javascript:void(0)'
       %li.contrast.contrast-light= link_to 'Contrast', 'javascript:void(0)'
 
-= form_for(post, remote: true, authenticity_token: true) do |f|
+= form_for(post, remote: true) do |f|
   = f.text_field :title, placeholder: 'Buzzword filled title'
   = f.text_area :content, placeholder: 'Try to write something interesting'
 
