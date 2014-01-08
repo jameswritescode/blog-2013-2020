@@ -1,3 +1,5 @@
+require 'net/http'
+
 class SitemapPinger
   SEARCH_ENGINES = {
     google: 'http://www.google.com/webmasters/tools/ping?sitemap=%s',
