@@ -1,4 +1,3 @@
-# blog.jamesnewton.com
+# blog
 
-This is for my blog, which doesn't exactly exist yet.
-
+This is for my blog [blog.jamesnewton.com](http://blog.jamesnewton.com)
