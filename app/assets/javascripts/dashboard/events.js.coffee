@@ -65,7 +65,11 @@ class @DashboardEvents
   publish: ->
     $('form').append('<input name="post[published]" type="hidden" value="true" />')
 
-    document.forms[0].submit()
+    @save()
+
+    setTimeout ->
+      window.location = $('body.dashboard div.menu li.preview a').attr('href')
+    , 1000
 
   save: ->
     DashboardRequests.save_post()

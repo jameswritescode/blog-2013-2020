@@ -26,6 +26,5 @@ class @DashboardRequests
       el = $("body.dashboard div.posts li[data-slug='#{data.slug}']")
       el.next().remove()
       el.remove()
-      console.log('data')
 
       $('body.dashboard li').first().click()
