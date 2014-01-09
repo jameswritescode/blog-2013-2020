@@ -1,5 +1,9 @@
 require 'spec_helper'
 
 describe Attachment do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'creates an attachment' do
+    attachment = create(:attachment)
+
+    expect(File.exist?(attachment.attachment.file.file)).to be_true
+  end
 end

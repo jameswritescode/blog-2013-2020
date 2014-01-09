@@ -2,5 +2,6 @@
 
 FactoryGirl.define do
   factory :attachment do
+    attachment { File.open(Rails.root.join('spec', 'support', 'murray.jpeg')) }
   end
 end

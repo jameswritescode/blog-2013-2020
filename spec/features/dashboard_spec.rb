@@ -11,6 +11,8 @@ describe 'Dashboard Management' do
     find('div.posts button').click()
     find("div.posts li[data-slug='#{Post.last.slug}']").click()
 
+    sleep 1
+
     title   = find('input[name="post[title]"]').value
     content = find('textarea').value
 
