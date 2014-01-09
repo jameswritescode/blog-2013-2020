@@ -45,7 +45,7 @@ class PostsController < ApplicationController
         format.json { render json: post }
         format.html { redirect_to(read_post_path(post)) } if opts[:update]
       else
-        format.json { render json: { errors: post.errors.full_messages } }
+        format.json { render json: post.errors, status: :unprocessable_entity }
       end
     end
   end

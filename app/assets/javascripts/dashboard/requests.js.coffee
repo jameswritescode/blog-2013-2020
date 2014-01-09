@@ -9,10 +9,7 @@ class @DashboardRequests
       data:     submit
       dataType: 'JSON'
     .success (data) ->
-      if data.errors
-        notice.text('Not Saved')
-      else
-        notice.trigger('post_saved', [data])
+      notice.trigger('post_saved', [data])
     .error ->
       notice.text('Not Saved')
 
