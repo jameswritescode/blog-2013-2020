@@ -8,4 +8,12 @@ class Redcarpet::Render::BlogHTML < Redcarpet::Render::HTML
       </code></pre>
     HTML
   end
+
+  def preprocess(full_document)
+    full_document.gsub(/@\[(.*)\]\((.*)\)/) do
+      <<-HTML
+<a href="#{$2}"><img src="#{$2}" alt="#{$1}" /></a>
+      HTML
+    end
+  end
 end
