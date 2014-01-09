@@ -2,6 +2,7 @@ Blog::Application.routes.draw do
   devise_for :users
 
   resources :posts, only: [:create, :update, :destroy]
+  resources :attachments, only: [:create]
 
   get '/dashboard/post_listing'
   get '/sitemap.xml', to: 'sitemap#index',   as: :sitemap, defaults: { format: :xml }

@@ -2,6 +2,9 @@ $ ->
   new DashboardEvents
     el: $(document)
 
+  new DashboardUpload
+    el: $('body.dashboard')
+
   textareaResize = ->
     textareaSize = document.documentElement.clientHeight - 100
 

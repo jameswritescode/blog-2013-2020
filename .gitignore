@@ -9,3 +9,5 @@ config/blog.yml
 Capfile
 db/database.yml
 config/deploy*
+public/uploads
+public/attachments

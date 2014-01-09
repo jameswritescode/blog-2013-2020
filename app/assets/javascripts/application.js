@@ -19,6 +19,7 @@
 //= require dashboard
 //= require dashboard/requests
 //= require dashboard/events
+//= require dashboard/upload
 
 NProgress.configure({ showSpinner: false })
 $(document).on('page:fetch', function() { NProgress.start(); });

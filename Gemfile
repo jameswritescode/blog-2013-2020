@@ -32,6 +32,7 @@ gem 'pg'
 gem 'capistrano'
 gem 'capistrano-rails'
 gem 'capistrano-bundler'
+gem 'carrierwave'
 
 group :development do
   gem 'capistrano'
