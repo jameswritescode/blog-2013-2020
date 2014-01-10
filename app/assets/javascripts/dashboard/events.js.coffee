@@ -159,8 +159,6 @@ class @DashboardEvents
         @calculateCounts(textarea)
 
   postSaved: (el, data) ->
-    el.text('Saved')
-
     @changeFormAction('patch', data.id)
 
     $('body.dashboard div.menu li.preview a').attr('href', "/#{data.slug}")

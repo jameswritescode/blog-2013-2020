@@ -33,7 +33,8 @@ class @DashboardUpload
     return
 
   createAttachment: (file) ->
-    data = new FormData()
+    notice = $('body.dashboard div.notices')
+    data   = new FormData()
 
     data.append('attachment[file]', file)
 
@@ -48,6 +49,10 @@ class @DashboardUpload
       @insertAtCaret("![](#{data.attachment.url})", $('body.dashboard textarea'))
 
       DashboardRequests.save_post()
+
+      notice.text('Image Uploaded')
+    .error ->
+      notice.text('Image Not Uploaded')
 
   insertAtCaret: (text, el) ->
     start = el[0].selectionStart

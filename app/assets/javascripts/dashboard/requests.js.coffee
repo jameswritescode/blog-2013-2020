@@ -9,11 +9,14 @@ class @DashboardRequests
       data:     submit
       dataType: 'JSON'
     .success (data) ->
+      notice.text('Saved')
       notice.trigger('post_saved', [data])
     .error ->
       notice.text('Not Saved')
 
   @destroy_post: ->
+    notice = $('body.dashboard div.notices')
+
     $.ajax
       url:      $('form').attr('action')
       type:     'DELETE'
@@ -24,4 +27,8 @@ class @DashboardRequests
       el.next().remove()
       el.remove()
 
+      notice.text('Post Deleted')
+
       $('body.dashboard li').first().click()
+    .error ->
+      notice.text('Post Not Deleted')
