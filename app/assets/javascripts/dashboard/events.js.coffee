@@ -9,7 +9,8 @@ class @DashboardEvents
     @options.el.on 'webkitfullscreenchange mozfullscreenchange fullscreenchange', => @detectFullScreenChange($('body.dashboard li.fullscreen'))
     @options.el.on 'keyup propertychange paste', 'body.dashboard textarea', => @calculateCounts()
     @options.el.on 'focus keydown', 'body.dashboard textarea', => @editorActive()
-    @options.el.on 'mousemove', => @editorInactive()
+    @options.el.on 'focus keydown', 'body.dashboard input[name="post[title]"]', => @titleActive()
+    @options.el.on 'mousemove', => @removeActive()
     @options.el.on 'click', 'body.dashboard div.posts button', => @loadPosts()
     @options.el.on 'keyup keydown keypress', (e) => @macros(e)
     @options.el.on 'click', 'body.dashboard div.posts li', (e) => @changePost($(e.currentTarget))
@@ -86,10 +87,17 @@ class @DashboardEvents
     $('body.dashboard span.words').text("#{words} Words")
 
   editorActive: ->
-    $('body.dashboard').find('div.menu, div.counts, div.posts, div.notices').addClass('editor-active')
+    @removeActive()
 
-  editorInactive: ->
-    $('body.dashboard').find('div.menu, div.counts, div.posts, div.notices').removeClass('editor-active')
+    $('body.dashboard').find('div.menu, div.counts, div.posts, div.notices, input[name="post[title]"]').addClass('editor-active')
+
+  titleActive: ->
+    @removeActive()
+
+    $('body.dashboard').find('div.menu, div.counts, div.posts, div.notices, textarea').addClass('editor-active')
+
+  removeActive: ->
+    $('body.dashboard').find('div.menu, div.counts, div.posts, div.notices, input[name="post[title]"], textarea').removeClass('editor-active')
 
   loadPosts: ->
     $('body.dashboard div.posts ul').load('/dashboard/post_listing')

@@ -51,7 +51,6 @@ div.bottom
     family: Roboto
     size: 14px
   text-transform: uppercase
-  transition: opacity .5s ease-in-out
   color: black
 
   div.notices, div.counts
@@ -60,15 +59,9 @@ div.bottom
   div.notices
     margin: 0 0 1em 1em
 
-    &.editor-active
-      opacity: 0.1
-
   div.counts
     float: right
     margin: 0 1em 1em 0
-
-    &.editor-active
-      opacity: 0.1
 
 textarea
   resize: none
@@ -159,10 +152,6 @@ div.posts
 
 div.menu, div.posts
   display: inline
-  transition: opacity .5s ease-in-out
-
-  &.editor-active
-    opacity: 0.1
 
   button
     background-color: black
@@ -180,3 +169,6 @@ div.menu, div.posts
         background-color: white
         color: black
         border: none
+
+.editor-active
+  opacity: 0.1
