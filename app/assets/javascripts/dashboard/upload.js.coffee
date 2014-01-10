@@ -46,8 +46,8 @@ class @DashboardUpload
       type:        'POST'
     .success (data) =>
       @insertAtCaret("![](#{data.attachment.url})", $('body.dashboard textarea'))
-    .error (data) ->
-      console.log(data)
+
+      DashboardRequests.save_post()
 
   insertAtCaret: (text, el) ->
     start = el[0].selectionStart
