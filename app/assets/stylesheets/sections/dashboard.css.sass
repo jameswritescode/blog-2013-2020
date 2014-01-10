@@ -170,5 +170,35 @@ div.menu, div.posts
         color: black
         border: none
 
+div.menu, div.counts, div.posts, div.notices, input, textarea
+  transition: opacity .3s ease-in-out
+
 .editor-active
   opacity: 0.1
+
+div#preview
+  display: none
+  padding-top: 1rem
+  color: black
+  overflow: auto
+
+  *
+    font:
+      size: 18px
+      family: 'Source Code Pro', sans-serif
+
+  p, ul, ol, blockquote
+    line-height: 35px
+    padding-bottom: 35px
+    margin: 0
+
+  pre
+    margin:
+      bottom: 35px
+      top: 0
+
+    code
+      font-size: 13px
+
+  &::-webkit-scrollbar
+    display: none

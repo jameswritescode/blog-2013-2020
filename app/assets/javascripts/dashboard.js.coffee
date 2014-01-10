@@ -9,6 +9,7 @@ $ ->
     textareaSize = document.documentElement.clientHeight - 100
 
     $('body.dashboard textarea').css('height', "#{textareaSize}px")
+    $('body.dashboard div#preview').css('height', "#{textareaSize}px")
 
   $(document).ready ->
     textareaResize()

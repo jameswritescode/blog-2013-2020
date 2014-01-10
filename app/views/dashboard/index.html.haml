@@ -14,7 +14,7 @@
     %ul.dropdown-menu.pull-right
       %li= link_to 'Home', root_path, target: :_blank
       %li.divider
-      %li.preview= link_to 'Preview', 'javascript:void(0)', target: :_blank
+      %li.preview= link_to 'Preview', 'javascript:void(0)'
       %li.publish= link_to 'Publish', 'javascript:void(0)'
       %li.divider
       %li.save= link_to 'Save', 'javascript:void(0)'
@@ -26,6 +26,8 @@
 = form_for(post, remote: true) do |f|
   = f.text_field :title, placeholder: 'Buzzword filled title'
   = f.text_area :content, placeholder: 'Try to write something interesting'
+
+  #preview
 
 .bottom
   .notices

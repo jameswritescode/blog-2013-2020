@@ -15,6 +15,7 @@
 //= require bootstrap
 //= require turbolinks
 //= require nprogress
+//= require marked
 //= require devise
 //= require dashboard
 //= require dashboard/requests

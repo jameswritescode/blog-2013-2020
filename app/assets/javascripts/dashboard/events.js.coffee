@@ -2,6 +2,9 @@ class @DashboardEvents
   constructor: (@options) -> @init()
 
   init: ->
+    @mode        = 'edit'
+    @typingTimer = false
+
     @setEventHandlers()
 
   setEventHandlers: ->
@@ -19,11 +22,40 @@ class @DashboardEvents
     @options.el.on 'keydown', 'body.dashboard textarea', (e) => @tab(e)
 
   optionChange: (el) ->
-    @setContrast(el) if el.hasClass('contrast')
-    @setFullScreen(el) if el.hasClass('fullscreen')
-    @publish() if el.hasClass('publish')
-    @save() if el.hasClass('save')
-    @destroy() if el.hasClass('destroy')
+    switch el.attr('class')
+      when 'contrast'   then @setContrast(el)
+      when 'fullscreen' then @setFullScreen(el)
+      when 'publish'    then @publish()
+      when 'preview'    then @togglePreview()
+      when 'edit'       then @togglePreview()
+      when 'save'       then @save()
+      when 'destroy'    then @destroy()
+
+  preview: (el) ->
+    $('body.dashboard div.menu li.preview').removeClass('preview').addClass('edit').find('a').text('Edit')
+
+    textarea = $('body.dashboard textarea')
+    parsed   = marked(textarea.val())
+
+    textarea.hide()
+
+    $('body.dashboard div#preview').html(parsed).show()
+
+    @mode = 'preview'
+
+  edit: ->
+    $('body.dashboard div.menu li.edit').removeClass('edit').addClass('preview').find('a').text('Preview')
+
+    $('body.dashboard div#preview').html('').hide()
+    $('body.dashboard textarea').show()
+
+    @mode = 'edit'
+
+  togglePreview: ->
+    if @mode is 'edit'
+      @preview()
+    else
+      @edit()
 
   setContrast: (el) ->
     if el.hasClass('contrast-light')
@@ -68,10 +100,6 @@ class @DashboardEvents
 
     @save()
 
-    setTimeout ->
-      window.location = $('body.dashboard div.menu li.preview a').attr('href')
-    , 1000
-
   save: ->
     DashboardRequests.save_post()
 
@@ -81,7 +109,7 @@ class @DashboardEvents
   calculateCounts: ->
     text  = $('body.dashboard textarea').val()
     words = text.trim().replace(/^\s+/gi, ' ').split(' ')
-    words = if words.length is 1 and words[0] is '' then words = 0 else words.length
+    words = if words.length is 1 and words[0] is '' then 0 else words.length
 
     $('body.dashboard span.characters').text("#{text.length} Characters")
     $('body.dashboard span.words').text("#{words} Words")
@@ -109,6 +137,11 @@ class @DashboardEvents
       event.preventDefault()
 
       @save()
+    else if event.metaKey and event.keyCode is 80
+      event.preventDefault()
+
+      @togglePreview()
+
 
   tab: (event) ->
     if event.keyCode is 9
@@ -135,17 +168,17 @@ class @DashboardEvents
       when 'create' then el.attr('action', main)
 
   changePost: (el) ->
+    @edit()
+
     slug     = el.data('slug')
     title    = $('input[name="post[title]"]')
     textarea = $('textarea[name="post[content]"]')
-    preview  = $('body.dashboard div.menu li.preview a')
 
     if slug is undefined
       @changeFormAction('create')
 
       title.val('')
       textarea.val('')
-      preview.attr('href', 'javascript:void(0)')
 
       @calculateCounts(textarea)
     else
@@ -154,23 +187,18 @@ class @DashboardEvents
 
         title.val(data.title)
         textarea.val(data.content)
-        preview.attr('href', "/#{data.slug}")
 
         @calculateCounts(textarea)
 
   postSaved: (el, data) ->
     @changeFormAction('patch', data.id)
 
-    $('body.dashboard div.menu li.preview a').attr('href', "/#{data.slug}")
-
-  typingTimer = null
-
   saveTimer: ->
     unless $('input[name="post[title]"]').val() is ''
       $('body.dashboard div.notices').text('Saving...')
 
-      clearTimeout(typingTimer)
+      clearTimeout(@typingTimer)
 
-      typingTimer = setTimeout =>
+      @typingTimer = setTimeout =>
         @save()
       , 400
