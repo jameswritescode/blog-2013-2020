@@ -445,7 +445,7 @@ var inline = {
   autolink: /^<([^ >]+(@|:\/)[^ >]+)>/,
   url: noop,
   tag: /^<!--[\s\S]*?-->|^<\/?\w+(?:"[^"]*"|'[^']*'|[^'">])*?>/,
-  link: /^!?\[(inside)\]\(href\)/,
+  link: /^@?!?\[(inside)\]\(href\)/,
   reflink: /^!?\[(inside)\]\s*\[([^\]]*)\]/,
   nolink: /^!?\[((?:\[[^\]]*\]|[^\[\]])*)\]/,
   strong: /^__([\s\S]+?)__(?!_)|^\*\*([\s\S]+?)\*\*(?!\*)/,
@@ -684,9 +684,12 @@ InlineLexer.prototype.outputLink = function(cap, link) {
   var href = escape(link.href)
     , title = link.title ? escape(link.title) : null;
 
-  return cap[0].charAt(0) !== '!'
-    ? this.renderer.link(href, title, this.output(cap[1]))
-    : this.renderer.image(href, title, escape(cap[1]));
+  if (cap[0].charAt(0) === '!')
+    return this.renderer.image(href, title, escape(cap[1]));
+  else if (cap[0].charAt(0) === '@')
+    return this.renderer.imagelink(href, title, this.output(cap[1]))
+  else
+    return this.renderer.link(href, title, this.output(cap[1]))
 };
 
 /**
@@ -859,6 +862,20 @@ Renderer.prototype.image = function(href, title, text) {
     out += ' title="' + title + '"';
   }
   out += '>';
+  return out;
+};
+
+Renderer.prototype.imagelink = function(href, title, text) {
+  var out = '<a href="' + href + '"';
+
+  if (title) out += ' title="' + title + '"';
+
+  out += '><img src="' + href + '" alt="' + text + '"';
+
+  if (title) out += ' title="' + title + '"';
+
+  out += '/></a>';
+
   return out;
 };
 
