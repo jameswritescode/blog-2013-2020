@@ -1,6 +1,10 @@
-dashboardApp = angular.module('dashboardApp', [])
+@dashboardApp = angular.module('dashboardApp', [])
 
-#= require angular/controllers/DashboardCtrl
+@dashboardApp.directive 'separatePosts', ($compile) ->
+  return {
+    link: (scope, element, attrs) ->
+      divider = angular.element('<li class="divider"></li>')
+      divider.insertAfter(element) unless scope.$last
 
-dashboardApp.configure(['$routeProvider', ($routeProvider) ->
-])
+      $compile(divider)(scope)
+  }

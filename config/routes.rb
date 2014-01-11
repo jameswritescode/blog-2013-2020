@@ -1,7 +1,7 @@
 Blog::Application.routes.draw do
   devise_for :users
 
-  resources :posts, only: [:create, :update, :destroy]
+  resources :posts, only: [:create, :update, :destroy, :index]
   resources :attachments, only: [:create]
 
   get '/dashboard/post_listing'

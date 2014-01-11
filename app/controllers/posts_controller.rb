@@ -3,8 +3,13 @@ class PostsController < ApplicationController
   before_action :post_exist_or_can_be_viewed?, only: [:show]
 
   expose(:post, attributes: :post_params)
+  expose(:posts)
 
   def index
+    respond_to do |format|
+      format.json if current_user
+      request.path == root_path ? format.html : format.html { redirect_to root_path }
+    end
   end
 
   def show
