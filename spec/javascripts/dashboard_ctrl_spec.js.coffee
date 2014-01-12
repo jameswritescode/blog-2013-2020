@@ -13,8 +13,6 @@ describe 'DashboardCtrl', ->
 
     scope = $rootScope.$new()
     ctrl  = $controller 'DashboardCtrl', $scope: scope
-
-    return
   )
 
   it 'should create "posts" model with 2 phones fetched from xhr', ->
@@ -24,7 +22,3 @@ describe 'DashboardCtrl', ->
 
     expect(scope.posts.length).toBe 2
     expect(scope.posts).toEqual [{}, {}]
-
-    return
-
-  return
