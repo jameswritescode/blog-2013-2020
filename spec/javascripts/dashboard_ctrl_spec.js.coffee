@@ -1,9 +1,30 @@
 describe 'DashboardCtrl', ->
+  scope        =
+  ctrl         =
+  $httpBackend =
+
   beforeEach module('dashboardApp')
 
-  it 'sets posts to an empty array', inject(($controller) ->
-    scope      = {}
-    controller = $controller 'DashboardCtrl', $scope = scope
+  beforeEach inject((_$httpBackend_, $rootScope, $controller) ->
+    $httpBackend = _$httpBackend_
+    $httpBackend.expectGET('/posts.json').respond [
+      {}, {}
+    ]
 
-    expect(scope.posts.length).toBe 0
+    scope = $rootScope.$new()
+    ctrl  = $controller 'DashboardCtrl', $scope: scope
+
+    return
   )
+
+  it 'should create "posts" model with 2 phones fetched from xhr', ->
+    expect(scope.posts).toBeUndefined()
+
+    $httpBackend.flush()
+
+    expect(scope.posts.length).toBe 2
+    expect(scope.posts).toEqual [{}, {}]
+
+    return
+
+  return
