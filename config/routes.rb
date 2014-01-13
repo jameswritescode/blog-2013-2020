@@ -5,9 +5,10 @@ Blog::Application.routes.draw do
   resources :attachments, only: [:create]
 
   get '/dashboard/post_listing'
-  get '/sitemap.xml', to: 'sitemap#index',   as: :sitemap, defaults: { format: :xml }
-  get '/dashboard',   to: 'dashboard#index', as: :dashboard
-  get '/:id',         to: 'posts#show',      as: :read_post
+  get '/sitemap.xml',     to: 'sitemap#index',   as: :sitemap, defaults: { format: :xml }
+  get '/dashboard',       to: 'dashboard#index', as: :dashboard
+  get '/dashboard/*path', to: 'dashboard#index'
+  get '/:id',             to: 'posts#show',      as: :read_post
 
   root to: 'posts#index'
 end

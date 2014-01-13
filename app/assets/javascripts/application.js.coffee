@@ -2,6 +2,7 @@
 #= require jquery_ujs
 #= require bootstrap
 #= require turbolinks
+#= require dashboard
 #= require angular
 #= require angular/main
 #= require_tree ./angular/controllers

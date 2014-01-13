@@ -16,11 +16,14 @@ class PostsController < ApplicationController
     self.post = Post.where(slug: params[:id]).first
 
     respond_to do |format|
-      format.html
-      format.json { render json: post } if current_user
+      if !post.nil?
+        format.html
+        format.json { render json: post } if current_user
+      else
+        format.html { redirect_to root_path }
+        format.json { render json: post, status: :unprocessable_entity }
+      end
     end
-  rescue
-    redirect_to root_path
   end
 
   def create

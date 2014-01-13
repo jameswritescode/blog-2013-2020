@@ -1,6 +1,10 @@
-@dashboardApp = angular.module('dashboardApp', [])
+@dashboard = angular.module('dashboard', [])
 
-@dashboardApp.directive 'separatePosts', ($compile) ->
+@dashboard.config ['$locationProvider', ($locationProvider) ->
+  $locationProvider.html5Mode(true)
+]
+
+@dashboard.directive 'separatePosts', ($compile) ->
   return {
     link: (scope, element, attrs) ->
       divider = angular.element('<li class="divider"></li>')

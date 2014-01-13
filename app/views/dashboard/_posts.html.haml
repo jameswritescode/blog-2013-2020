@@ -1,9 +1,11 @@
-%li
+%li{ 'ng-click' => 'newPost()' }
   %strong.new Create new post...
-%li.divider
+
+- unless Post.count.zero?
+  %li.divider
 
 
-%li{ 'ng-repeat' => 'post in posts', 'data-slug' => '{{post.slug}}', 'separate-posts' => true }
+%li{ 'ng-repeat' => 'post in posts', 'data-slug' => '{{post.slug}}', 'separate-posts' => true, 'ng-click' => 'loadPost(post)' }
   %strong {{post.title}}
 
   .post-created

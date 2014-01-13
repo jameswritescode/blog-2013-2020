@@ -8,7 +8,8 @@ describe 'DashboardCtrl', ->
   beforeEach inject((_$httpBackend_, $rootScope, $controller) ->
     $httpBackend = _$httpBackend_
     $httpBackend.expectGET('/posts.json').respond [
-      {}, {}
+      { title: 'Testing', content: 'Test post' },
+      { title: 'Hello!',  content: 'World!' }
     ]
 
     scope = $rootScope.$new()
