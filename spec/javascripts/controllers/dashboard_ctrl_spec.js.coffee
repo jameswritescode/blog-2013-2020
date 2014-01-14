@@ -2,15 +2,13 @@ describe 'DashboardCtrl', ->
   scope        =
   ctrl         =
   $httpBackend =
+  posts        = [{ title: 'Testing', content: 'Test post' }, { title: 'Hello!', content: 'World!' }]
 
-  beforeEach module('dashboardApp')
+  beforeEach module('dashboard')
 
   beforeEach inject((_$httpBackend_, $rootScope, $controller) ->
     $httpBackend = _$httpBackend_
-    $httpBackend.expectGET('/posts.json').respond [
-      { title: 'Testing', content: 'Test post' },
-      { title: 'Hello!',  content: 'World!' }
-    ]
+    $httpBackend.expectGET('/posts.json').respond posts
 
     scope = $rootScope.$new()
     ctrl  = $controller 'DashboardCtrl', $scope: scope
@@ -22,4 +20,4 @@ describe 'DashboardCtrl', ->
     $httpBackend.flush()
 
     expect(scope.posts.length).toBe 2
-    expect(scope.posts).toEqual [{}, {}]
+    expect(scope.posts).toEqual posts

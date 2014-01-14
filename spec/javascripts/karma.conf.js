@@ -9,6 +9,7 @@ module.exports = function(config) {
       },
 
       files: [
+        'vendor/assets/javascripts/jquery-*',
         'vendor/assets/javascripts/angular.js',
         'vendor/assets/javascripts/angular-mocks.js',
         'app/assets/javascripts/angular/*.js.coffee',
