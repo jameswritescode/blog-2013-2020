@@ -1,21 +1,22 @@
-%li{ 'ng-click' => 'newPost()' }
-  %strong.new Create new post...
+%ul.dropdown-menu
+  %li{ 'ng-click' => 'newPost()' }
+    %strong.new Create new post...
 
-- unless Post.count.zero?
-  %li.divider
+  - unless Post.count.zero?
+    %li.divider
 
 
-%li{ 'ng-repeat' => 'post in posts', 'data-slug' => '{{post.slug}}', 'separate-posts' => true, 'ng-click' => 'loadPost(post)' }
-  %strong {{post.title}}
+  %li{ 'ng-repeat' => 'post in posts', 'data-slug' => '{{post.slug}}', 'separate-posts' => true, 'ng-click' => 'loadPost(post)' }
+    %strong {{post.title}}
 
-  .post-created
-    Created
-    %abbr{ title: '{{post.created_at}}' } {{post.created_at_in_words}}
-    ago
-
-    %span{ 'ng-if' => 'post.created_at != post.updated_at' }
-      &mdash; Updated
-      %abbr{ title: '{{post.updated_at}}'} {{post.updated_at_in_words}}
+    .post-created
+      Created
+      %abbr{ title: '{{post.created_at}}' } {{post.created_at_in_words}}
       ago
 
-  .post-status {{post.status}}
+      %span{ 'ng-if' => 'post.created_at != post.updated_at' }
+        &mdash; Updated
+        %abbr{ title: '{{post.updated_at}}'} {{post.updated_at_in_words}}
+        ago
+
+    .post-status {{post.status}}

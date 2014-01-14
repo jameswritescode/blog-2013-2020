@@ -1,10 +1,9 @@
 .posts
-  .btn-group
+  .btn-group{ 'ng-click' => 'updatePosts()' }
     %button.btn.btn-default.dropdown-toggle{ type: :button, 'data-toggle' => :dropdown }
       %i.ion-filing
 
-    %ul.dropdown-menu
-      = render 'posts'
+    = render 'posts'
 
 .menu
   .btn-group
@@ -13,9 +12,9 @@
 
     = render 'menu'
 
-= form_for(post, remote: true, html: { 'ng-init' => 'loadPostFromUrl()' }) do |f|
-  = f.text_field :title, placeholder: 'Buzzword filled title'
-  = f.text_area  :content, placeholder: 'Try to write something interesting'
+= form_for(post, remote: true, html: { 'ng-controller' => :PostCtrl }) do |f|
+  = f.text_field   :title,   placeholder: 'Buzzword filled title',              'ng-model' => 'title'
+  = f.text_area    :content, placeholder: 'Try to write something interesting', 'ng-model' => 'content', stats: true
 
   #preview
 
