@@ -14,12 +14,15 @@ class @DashboardCtrl
     @scope.changeFormAction = @changeFormAction
     @scope.save             = @save
     @scope.togglePreview    = @togglePreview
+    @scope.edit             = @edit
+    @scope.preview          = @preview
 
   updatePosts: =>
     @http.get('/posts.json').success (data) =>
       @scope.posts = data
 
   loadPost: (post) =>
+    @scope.edit()
     @scope.changeFormAction('patch', post.id)
     @scope.dashboard.find('input[name="post[title]"]').val(post.title)
     @scope.dashboard.find('textarea').val(post.content)
@@ -53,23 +56,56 @@ class @DashboardCtrl
         el.find('div').append('<input name="_method" type="hidden" value="patch" />')
       when 'create' then el.attr('action', main)
 
+  preview: =>
+    @scope.dashboard.find('div.menu li.preview').removeClass('preview').addClass('edit').find('a').text('Edit')
+
+    textarea = @scope.dashboard.find('textarea')
+    parsed   = marked(textarea.val())
+
+    textarea.hide()
+
+    @scope.dashboard.find('div#preview').html(parsed).show()
+    @scope.mode = 'preview'
+
+  edit: =>
+    @scope.dashboard.find('div.menu li.edit').removeClass('edit').addClass('preview').find('a').text('Preview')
+    @scope.dashboard.find('div#preview').html('').hide()
+    @scope.dashboard.find('textarea').show()
+    @scope.mode = 'edit'
+
+
   togglePreview: =>
     if @scope.mode is 'edit'
-      @scope.dashboard.find('div.menu li.preview').removeClass('preview').addClass('edit').find('a').text('Edit')
-
-      textarea = @scope.dashboard.find('textarea')
-      parsed   = marked(textarea.val())
-
-      textarea.hide()
-
-      @scope.dashboard.find('div#preview').html(parsed).show()
-      @scope.mode = 'preview'
+      @scope.preview()
     else
-      @scope.dashboard.find('div.menu li.edit').removeClass('edit').addClass('preview').find('a').text('Preview')
-      @scope.dashboard.find('div#preview').html('').hide()
-      @scope.dashboard.find('textarea').show()
-      @scope.mode = 'edit'
+      @scope.edit()
 
-  save: ->
+  save: =>
+    notices = @scope.dashboard.find('div.notices')
+    form    = angular.element('form')
+    action  = form.attr('action')
+    fields  = form.serializeArray()
+    send    = {}
+
+    angular.forEach fields, (object) ->
+      if matches = object.name.match(/post\[(\S+)\]/)
+        match = matches[0].replace(/post\[(\S+)\]/, '$1')
+
+        post        = send['post'] ||= {}
+        post[match] = object.value
+      else
+        send[object.name] = object.value
+
+    @http
+      url:     action,
+      method:  'POST',
+      data:    angular.toJson(send),
+      headers: { 'Content-Type': 'application/json' }
+    .success (data) =>
+      notices.find('notices').text('Saved')
+
+      @scope.$emit('post_saved', data)
+    .error ->
+      notices.find('div.notices').text('Not Saved')
 
 @dashboard.controller 'DashboardCtrl', @DashboardCtrl
