@@ -14,9 +14,39 @@ class @DashboardCtrl
     @scope.togglePreview    = @togglePreview
     @scope.edit             = @edit
     @scope.preview          = @preview
+    @scope.insertAtCaret    = @insertAtCaret
+    @scope.createAttachment = @createAttachment
     @scope.updatePosts      = @updatePosts
 
     @scope.updatePosts()
+
+  createAttachment: (file) =>
+    notice = @scope.dashboard.find('div.notices')
+    data   = new FormData()
+    data.append('attachment[file]', file)
+
+    $.ajax
+      url:         '/attachments'
+      data:        data
+      cache:       false
+      contentType: false
+      processData: false
+      type:        'POST'
+    .success (data) =>
+      @scope.insertAtCaret("![](#{data.attachment.url})", @scope.dashboard.find('textarea'))
+      @scope.save()
+
+      notice.text('Image Uploaded')
+    .error ->
+      notice.text('Image Not Uploaded')
+
+  insertAtCaret: (text, el) ->
+    start = el[0].selectionStart
+    end   = el[0].selectionEnd
+
+    el.val("#{el.val().substring(0, start)}#{text}#{el.val().substring(end)}")
+
+    el[0].selectionStart = el[0].selectionEnd = start + text.length
 
   updatePosts: =>
     @http.get('/posts.json').success (data) =>
