@@ -21,6 +21,7 @@ class @PostCtrl
 
     @scope.$on 'post_saved', ($event, post) =>
       @scope.changeFormAction('patch', post.id)
+      @scope.updatePosts()
 
   saveTimer: ->
     @scope.dashboard.find('div.notices').text('Saving...')

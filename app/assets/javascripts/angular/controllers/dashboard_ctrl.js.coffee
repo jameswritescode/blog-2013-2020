@@ -4,8 +4,6 @@ class @DashboardCtrl
   constructor: (@scope, @http) -> @init()
 
   init: =>
-    @updatePosts()
-
     @scope.dashboard        = angular.element('body.dashboard')
     @scope.mode             = 'edit'
     @scope.loadPost         = @loadPost
@@ -16,6 +14,9 @@ class @DashboardCtrl
     @scope.togglePreview    = @togglePreview
     @scope.edit             = @edit
     @scope.preview          = @preview
+    @scope.updatePosts      = @updatePosts
+
+    @scope.updatePosts()
 
   updatePosts: =>
     @http.get('/posts.json').success (data) =>
