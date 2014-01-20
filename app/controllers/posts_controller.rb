@@ -2,6 +2,9 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :update, :destroy]
   before_action :post_exist_or_can_be_viewed?, only: [:show]
 
+  # TODO find a better way to handle this
+  skip_before_filter :verify_authenticity_token
+
   expose(:post, attributes: :post_params)
   expose(:posts)
 

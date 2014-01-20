@@ -82,30 +82,20 @@ class @DashboardCtrl
 
   save: =>
     notices = @scope.dashboard.find('div.notices')
-    form    = angular.element('form')
-    action  = form.attr('action')
-    fields  = form.serializeArray()
-    send    = {}
+    form    = @scope.dashboard.find('form')
 
-    angular.forEach fields, (object) ->
-      if matches = object.name.match(/post\[(\S+)\]/)
-        match = matches[0].replace(/post\[(\S+)\]/, '$1')
-
-        post        = send['post'] ||= {}
-        post[match] = object.value
-      else
-        send[object.name] = object.value
-
-    @http
-      url:     action,
-      method:  'POST',
-      data:    angular.toJson(send),
-      headers: { 'Content-Type': 'application/json' }
+    $.ajax
+      url:      form.attr('action')
+      method:   'POST'
+      data:     form.serialize()
+      dataType: 'JSON'
     .success (data) =>
-      notices.find('notices').text('Saved')
+      notices.text('Saved')
 
-      @scope.$emit('post_saved', data)
+      @scope.$broadcast('post_saved', data)
     .error ->
-      notices.find('div.notices').text('Not Saved')
+      notices.text('Not Saved')
+
+    return
 
 @dashboard.controller 'DashboardCtrl', @DashboardCtrl
