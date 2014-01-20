@@ -1,11 +1,11 @@
-%ul.dropdown-menu.pull-right
+%ul.dropdown-menu.pull-right{ 'ng-controller' => :MenuCtrl }
   %li= link_to 'Home', root_path, target: :_blank
   %li.divider
-  %li.preview= link_to 'Preview', 'javascript:void(0)'
-  %li.publish= link_to 'Publish', 'javascript:void(0)'
+  %li.preview{ 'ng-click' => 'togglePreview()' }= link_to 'Preview', 'javascript:void(0)'
+  %li{ 'ng-click' => 'publish()' }= link_to 'Publish', 'javascript:void(0)'
   %li.divider
-  %li.save= link_to 'Save', 'javascript:void(0)'
-  %li.destroy= link_to 'Delete', 'javascript:void(0)'
+  %li{ 'ng-click' => 'save()' }= link_to 'Save', 'javascript:void(0)'
+  %li{ 'ng-click' => 'destroy()' }= link_to 'Delete', 'javascript:void(0)'
   %li.divider
-  %li.fullscreen.expand= link_to 'Full Screen', 'javascript:void(0)'
-  %li.contrast.contrast-light= link_to 'Contrast', 'javascript:void(0)'
+  %li.expand{ 'ng-click' => 'fullscreen($event)', 'ng-fullscreenchange' => 'detectFullScreenChange($event)' }= link_to 'Full Screen', 'javascript:void(0)'
+  %li.contrast-light{ 'ng-click' => 'contrast($event)' }= link_to 'Contrast', 'javascript:void(0)'
