@@ -13,8 +13,8 @@
     = render 'menu'
 
 = form_for(post, remote: true, html: { 'ng-controller' => :PostCtrl, 'drag-and-drop' => true }) do |f|
-  = f.text_field   :title,   placeholder: 'Buzzword filled title',              'ng-model' => 'title'
-  = f.text_area    :content, placeholder: 'Try to write something interesting', 'ng-model' => 'content', stats: true
+  = f.text_field :title, placeholder: 'Buzzword filled title', 'ng-model' => 'title', 'editor-activity' => true, class: 'title'
+  = f.text_area :content, placeholder: 'Try to write something interesting', 'ng-model' => 'content', stats: true, 'editor-activity' => true, class: 'content'
 
   #preview
 
