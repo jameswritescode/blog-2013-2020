@@ -52,7 +52,7 @@ class @MenuCtrl
       document.webkitCancelFullScreen()
 
   detectFullScreenChange: (e) ->
-    el = angular.element(e.originalEvent.srcElement).parent()
+    el = angular.element(e.originalEvent.srcElement).find('div.menu li.fullscreen')
 
     if el.hasClass('expand')
       el.removeClass('expand').addClass('shrink')
@@ -69,6 +69,19 @@ class @MenuCtrl
 
     return
 
-  destroy: ->
+  destroy: =>
+    notice = @scope.dashboard.find('div.notices')
+
+    $.ajax
+      url:      @scope.dashboard.find('form').attr('action')
+      type:     'DELETE'
+      data:     { '_method': 'destroy' }
+      dataType: 'JSON'
+    .success (data) =>
+      notice.text('Post Deleted')
+
+      @scope.dashboard.find('div.posts li').first().click()
+    .error ->
+      notice.text('Post Not Deleted')
 
 @dashboard.controller 'MenuCtrl', @MenuCtrl

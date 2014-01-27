@@ -59,3 +59,10 @@
           if /image/.test(file.type)
             scope.createAttachment(file)
   }
+
+@dashboard.directive 'fullScreenWatch', ->
+  return {
+    link: (scope, element, attrs) ->
+      element.bind 'fullscreenchange mozfullscreenchange webkitfullscreenchange', ($event) ->
+        scope.detectFullScreenChange($event)
+  }
