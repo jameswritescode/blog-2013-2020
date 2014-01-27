@@ -4,7 +4,7 @@
   $locationProvider.html5Mode(true)
 ]
 
-@dashboard.directive 'separatePosts', ($compile) ->
+@dashboard.directive 'separatePosts', ['$compile', ($compile) ->
   return {
     link: (scope, element, attrs) ->
       divider = angular.element('<li class="divider"></li>')
@@ -12,6 +12,7 @@
 
       $compile(divider)(scope)
   }
+]
 
 @dashboard.directive 'macros', ->
   return {
