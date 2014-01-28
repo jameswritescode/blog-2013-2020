@@ -22,6 +22,7 @@
           $event.preventDefault()
 
           scope.togglePreview()
+          Rainbow.color()
         else if $event.metaKey and $event.keyCode is 83
           $event.preventDefault()
 

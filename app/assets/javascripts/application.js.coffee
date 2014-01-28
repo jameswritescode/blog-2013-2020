@@ -9,6 +9,7 @@
 #= require nprogress
 #= require marked
 #= require devise
+#= require rainbow-custom.min
 
 NProgress.configure
   showSpinner: false

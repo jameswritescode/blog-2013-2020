@@ -757,8 +757,7 @@ Renderer.prototype.code = function(code, lang, escaped, options) {
       + '\n</code></pre>';
   }
 
-  return '<pre><code class="'
-    + options.langPrefix
+  return '<pre><code data-language="'
     + lang
     + '">'
     + (escaped ? code : escape(code))
