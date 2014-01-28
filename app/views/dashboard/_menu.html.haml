@@ -9,3 +9,5 @@
   %li.divider
   %li.expand{ 'ng-click' => 'fullscreen($event)' }= link_to 'Full Screen', 'javascript:void(0)'
   %li.contrast-light{ 'ng-click' => 'contrast($event)' }= link_to 'Contrast', 'javascript:void(0)'
+  %li.divider
+  %li.signout= link_to 'Sign Out', destroy_user_session_path, method: :delete
