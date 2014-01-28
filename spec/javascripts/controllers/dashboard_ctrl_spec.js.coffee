@@ -14,7 +14,7 @@ describe 'DashboardCtrl', ->
     ctrl  = $controller 'DashboardCtrl', $scope: scope
   )
 
-  it 'should create "posts" model with 2 phones fetched from xhr', ->
+  it 'should create "posts" model with 2 posts fetched from xhr', ->
     expect(scope.posts).toBeUndefined()
 
     $httpBackend.flush()

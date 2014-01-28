@@ -11,12 +11,7 @@ describe 'Dashboard Management' do
     find('div.posts button').click()
     find("div.posts li[data-slug='#{Post.last.slug}']").click()
 
-    sleep 1
-
-    title   = find('input[name="post[title]"]').value
-    content = find('textarea').value
-
-    expect(title).to eql Post.last.title
-    expect(content).to eql Post.last.content
+    expect(find('input.title').value).to eql Post.last.title
+    expect(find('textarea').value).to eql Post.last.content
   end
 end
