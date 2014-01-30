@@ -29,11 +29,12 @@ module Blog
     config.autoload_paths += %W(#{config.root}/lib)
 
     config.to_prepare do
-      Devise::SessionsController.layout   'devise'
-      DashboardController.layout 'dashboard'
+      Devise::SessionsController.layout 'devise'
+      DashboardController.layout        'dashboard'
     end
 
-    config.active_record.observers = :sitemap_observer
+    config.active_record.observers = :sitemap_observer,
+                                     :post_observer
 
     config.action_controller.page_cache_directory = Rails.root.join('public', 'deploy').to_s
   end

@@ -15,6 +15,21 @@ describe Post do
     end
   end
 
+  context '#published_at' do
+    let(:post) { create(:post) }
+
+    it 'has a DateTime when published' do
+      post.published = true
+      post.save
+
+      expect(post.published_at.is_a?(Time)).to be_true
+    end
+
+    it 'is nil when idea' do
+      expect(post.published_at).to be_nil
+    end
+  end
+
   context 'post functions' do
     let(:post) { create(:post, content: 'word ' * 1000) }
 
@@ -25,7 +40,7 @@ describe Post do
   describe 'scopes' do
     context 'published' do
       it 'has objects when there are published posts' do
-        2.times { FactoryGirl.create(:post, published: true) }
+        2.times { create(:post, published: true) }
 
         expect(Post.published.count).to eql 2
       end
@@ -33,7 +48,7 @@ describe Post do
 
     context 'ideas' do
       it 'has objects when there are unpublished posts' do
-        2.times { FactoryGirl.create(:post) }
+        2.times { create(:post) }
 
         expect(Post.ideas.count).to eql 2
       end

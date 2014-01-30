@@ -19,4 +19,6 @@
         %abbr{ title: '{{post.updated_at}}'} {{post.updated_at_in_words}}
         ago
 
-    .post-status {{post.status}}
+    .post-status
+      %abbr{ title: '{{post.published_at}}', 'ng-if' => 'post.status === "published"' } {{post.status}}
+      %span{ 'ng-if' => 'post.status === "idea" ' } {{post.status}}

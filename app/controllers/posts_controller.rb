@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :update, :destroy]
-  before_action :post_exist_or_can_be_viewed?, only: [:show]
+  before_action :post_exist_or_can_be_viewed?, only: :show
 
   expose(:post, attributes: :post_params)
   expose(:posts)
@@ -46,8 +46,6 @@ class PostsController < ApplicationController
   private
 
   def save_post(opts = {})
-    post.slug = generate_slug(post.title)
-
     respond_to do |format|
       if post.save
         format.json { render json: post }
@@ -64,10 +62,6 @@ class PostsController < ApplicationController
     if post.nil? || post.idea? && !current_user
       redirect_to root_path
     end
-  end
-
-  def generate_slug(title)
-    title.parameterize
   end
 
   def post_params

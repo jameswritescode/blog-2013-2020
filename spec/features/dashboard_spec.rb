@@ -36,6 +36,8 @@ describe 'Dashboard Management' do
     find('div.posts button').click
     find("div.posts li[data-slug='#{Post.last.slug}']").click
 
+    sleep 1
+
     expect(find('input.title').value).to eql Post.last.title
     expect(find('textarea').value).to eql Post.last.content
   end
@@ -47,6 +49,8 @@ describe 'Dashboard Management' do
     find("div.posts li[data-slug='#{post.slug}']").click
     find('div.menu button').click
     find('div.menu').click_link('Delete')
+
+    sleep 1
 
     expect(find('input.title').value).to eql ''
     expect(find('textarea').value).to eql ''
