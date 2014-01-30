@@ -16,20 +16,26 @@ describe 'Dashboard Management' do
 
     sleep 1
 
-    expect(Post.first.title).to eql title
-    expect(Post.first.content).to eql content
-    expect(Post.first.idea?).to be_true
+    expect(Post.last.title).to eql title
+    expect(Post.last.content).to eql content
+    expect(Post.last.idea?).to be_true
   end
 
   it 'publishes a post', js: true do
+    post = Post.last
+
     find('div.posts button').click
-    find("div.posts li[data-slug='#{Post.last.slug}']").click
+    find("div.posts li[data-slug='#{post.slug}']").click
     find('div.menu button').click
     find('div.menu').click_link('Publish')
 
     sleep 1
 
-    expect(Post.last.published?).to be_true
+    expect(post.reload.published?).to be_true
+
+    visit read_post_path(post)
+
+    expect(page.should have_content(post.title)).to be_true
   end
 
   it 'changes form values when another post is selected', js: true do
