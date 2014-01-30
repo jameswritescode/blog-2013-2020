@@ -1,5 +1,8 @@
 %article
-  %header= link_to Redcarpet::Render::SmartyPants.render(post.title).html_safe, read_post_path(post)
+  %header
+    %time{ datetime: post.published_at.strftime('%Y-%m-%d') }= post.published_at.strftime('%b %d, %Y')
+    = link_to Redcarpet::Render::SmartyPants.render(post.title).html_safe, read_post_path(post)
+
   = find_and_preserve Blog::Markdown.new(post.content).render.html_safe
 
   - if action_name == 'show'
