@@ -1,6 +1,6 @@
 %article
   %header
-    %time{ datetime: post.published_at.strftime('%Y-%m-%d') }= post.published_at.strftime('%b %d, %Y')
+    %time{ datetime: post.date_time }= post.readable_time
     = link_to Redcarpet::Render::SmartyPants.render(post.title).html_safe, read_post_path(post)
 
   = find_and_preserve Blog::Markdown.new(post.content).render.html_safe

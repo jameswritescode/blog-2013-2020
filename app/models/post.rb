@@ -22,7 +22,21 @@ class Post < ActiveRecord::Base
     content.split.length
   end
 
+  def date_time
+    decide_time.strftime('%Y-%m-%d')
+  end
+
+  def readable_time
+    decide_time.strftime('%b %d, %Y')
+  end
+
   def to_param
     slug
+  end
+
+  private
+
+  def decide_time
+    published? ? published_at : updated_at
   end
 end
