@@ -35,6 +35,8 @@ describe Post do
 
     it { expect(post.word_count).to eql 1000 }
     it { expect(post.read_time).to eql 5 }
+    it { expect(post.date_time).to eql post.send(:decide_time).strftime('%Y-%m-%d') }
+    it { expect(post.readable_time).to eql post.send(:decide_time).strftime('%b %d, %Y') }
   end
 
   describe 'scopes' do
