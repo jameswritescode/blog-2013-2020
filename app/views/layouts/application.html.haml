@@ -8,7 +8,7 @@
     = javascript_include_tag :application, 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body.main
-    = render 'layouts/google_analytics' if Blog.config.google_analytics_id
+    = render 'layouts/google_analytics' if Blog.config.google_analytics_id && !current_user
 
     #header= link_to Blog.config.name, root_path
 
