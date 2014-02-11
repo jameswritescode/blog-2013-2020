@@ -6,6 +6,8 @@ class Post < ActiveRecord::Base
   scope :published, -> { where(published: true).order('published_at DESC') }
   scope :ideas,     -> { where(published: false) }
 
+  has_many :metrics
+
   def idea?
     !published
   end
