@@ -10,6 +10,7 @@
 #= require marked
 #= require devise
 #= require rainbow-custom.min
+#= require d3.v3.min
 
 NProgress.configure
   showSpinner: false
