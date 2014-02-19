@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   expose(:posts)
 
   def index
-    Metric.tick('main', ip: request.ip)
+    Metric.tick('main', request)
 
     respond_to do |format|
       format.json if current_user
@@ -17,7 +17,7 @@ class PostsController < ApplicationController
   def show
     self.post = Post.where(slug: params[:id]).first
 
-    Metric.tick(post, ip: request.ip)
+    Metric.tick(post, request)
 
     respond_to do |format|
       if !post.nil?
