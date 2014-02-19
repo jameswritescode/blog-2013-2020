@@ -6,23 +6,23 @@ class PostsController < ApplicationController
   expose(:posts)
 
   def index
-    Metric.tick('main', request)
-
     respond_to do |format|
       format.json if current_user
-      request.path == root_path ? format.html : format.html { redirect_to root_path }
+
+      request.path == root_path ? format.html { Metric.tick('main', request) }: format.html { redirect_to root_path }
     end
   end
 
   def show
     self.post = Post.where(slug: params[:id]).first
 
-    Metric.tick(post, request)
-
     respond_to do |format|
       if !post.nil?
-        format.html
-        format.json { render json: post } if current_user
+        format.html do
+          Metric.tick(post, request)
+        end
+
+        format.json if current_user
       else
         format.html { redirect_to root_path }
         format.json { render json: post, status: :unprocessable_entity }
