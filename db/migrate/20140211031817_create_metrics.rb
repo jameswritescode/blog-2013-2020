@@ -3,6 +3,7 @@ class CreateMetrics < ActiveRecord::Migration
     create_table :metrics do |t|
       t.string     :name
       t.string     :ip
+      t.string     :referer
       t.references :post
 
       t.timestamps

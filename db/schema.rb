@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20140211031817) do
   create_table "metrics", force: true do |t|
     t.string   "name"
     t.string   "ip"
+    t.string   "referer"
     t.integer  "post_id"
     t.datetime "created_at"
     t.datetime "updated_at"
