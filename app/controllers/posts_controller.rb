@@ -7,7 +7,12 @@ class PostsController < ApplicationController
 
   def index
     respond_to do |format|
-      format.json if current_user
+      if current_user
+        format.json
+      else
+        format.json { Post.where(published: true) }
+      end
+
       request.path == root_path ? format.html : format.html { redirect_to root_path }
     end
   end
