@@ -10,7 +10,7 @@ class PostsController < ApplicationController
       if current_user
         format.json
       else
-        format.json { Post.where(published: true).order(:published_at) }
+        format.json { render json: Post.where(published: true).order('published_at DESC') }
       end
 
       request.path == root_path ? format.html : format.html { redirect_to root_path }
