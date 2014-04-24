@@ -2,7 +2,8 @@
 %html
   %head
     %title== #{"#{content_for(:title)} | " if content_for?(:title)}#{Blog.config.title}
-    = stylesheet_link_tag    'http://fonts.googleapis.com/css?family=Lora:400,700'
+    = stylesheet_link_tag    'http://fonts.googleapis.com/css?family=Lato:300,300italic,700'
+    = stylesheet_link_tag    'http://fonts.googleapis.com/css?family=Lora:700'
     = stylesheet_link_tag    'http://fonts.googleapis.com/css?family=Source+Code+Pro'
     = stylesheet_link_tag    :application, media: :all, 'data-turbolinks-track' => true
     = javascript_include_tag :application, 'data-turbolinks-track' => true
