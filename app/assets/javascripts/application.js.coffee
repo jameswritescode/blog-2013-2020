@@ -6,6 +6,7 @@
 #= require angular
 #= require angular/main
 #= require_tree ./angular/controllers
+#= require_tree ./angular/directives
 #= require nprogress
 #= require marked
 #= require devise
