@@ -3,7 +3,7 @@
 #= require bootstrap
 #= require turbolinks
 #= require dashboard
-#= require angular
+#= require vendor
 #= require angular/main
 #= require_tree ./angular/controllers
 #= require_tree ./angular/directives
