@@ -1,25 +1,3 @@
-.posts
-  .btn-group{ 'ng-click' => 'updatePosts()' }
-    %button.btn.btn-default.dropdown-toggle{ type: :button, 'data-toggle' => :dropdown }
-      %i.ion-filing
+%editor
 
-    = render 'posts'
-
-.menu
-  .btn-group
-    %button.btn.btn-default.dropdown-toggle{ type: :button, 'data-toggle' => :dropdown }
-      %i.ion-navicon-round
-
-    = render 'menu'
-
-= form_for(post, remote: true, html: { 'ng-controller' => :PostCtrl, 'drag-and-drop' => true }) do |f|
-  = f.text_field :title, placeholder: 'Buzzword filled title', 'ng-model' => 'title', 'editor-activity' => true, class: 'title'
-  = f.text_area :content, placeholder: 'Try to write something interesting', 'ng-model' => 'content', stats: true, 'editor-activity' => true, class: 'content'
-
-  #preview
-
-.bottom
-  .notices
-  .counts
-    %span.words 0 Words
-    %span.characters 0 Characters
+%preview
