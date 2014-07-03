@@ -4,7 +4,7 @@
 @font-face {
  font-family: $ionicons-font-family;
  src:url(asset-path("ionicons.eot?v=#{$ionicons-version}"));
- src:url(asset-path("onicons.eot?v=#{$ionicons-version}#iefix")) format("embedded-opentype"),
+ src:url(asset-path("ionicons.eot?v=#{$ionicons-version}#iefix")) format("embedded-opentype"),
   url(asset-path("ionicons.ttf?v=#{$ionicons-version}")) format("truetype"),
   url(asset-path("ionicons.woff?v=#{$ionicons-version}")) format("woff"),
   url(asset-path("ionicons.svg?v=#{$ionicons-version}#Ionicons")) format("svg");
