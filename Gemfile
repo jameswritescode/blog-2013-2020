@@ -8,7 +8,7 @@ def linux_only(gem)
   RUBY_PLATFORM.include?('linux') && gem
 end
 
-gem 'rails', '4.0.11'
+gem 'rails', '4.0.12'
 gem 'sass-rails', '~> 4.0.4'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.1'
