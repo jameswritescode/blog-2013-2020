@@ -12,3 +12,4 @@ config/deploy*
 public/uploads
 public/attachments
 .secret
+.capistrano/
