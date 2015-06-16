@@ -42,7 +42,6 @@ end
 
 group :test, :development do
   gem 'launchy'
-  gem 'sqlite3'
   gem 'pry-rails'
   gem 'factory_girl_rails'
   gem 'rspec-rails'
