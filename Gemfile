@@ -32,6 +32,7 @@ gem 'capistrano'
 gem 'capistrano-rails'
 gem 'capistrano-bundler'
 gem 'capistrano-rvm'
+gem 'capistrano-passenger'
 gem 'carrierwave'
 
 group :development do
