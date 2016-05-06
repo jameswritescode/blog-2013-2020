@@ -8,12 +8,12 @@ FactoryGirl.create(:post, published: true)
 
 FactoryGirl.create(:post, published: true,
   content: <<-MARKDOWN
-# #{Faker::Lorem.words(5).join(' ')}
-## #{Faker::Lorem.words(5).join(' ')}
-### #{Faker::Lorem.words(5).join(' ')}
-#### #{Faker::Lorem.words(5).join(' ')}
-##### #{Faker::Lorem.words(5).join(' ')}
-###### #{Faker::Lorem.words(5).join(' ')}
+# #{FFaker::Lorem.words(5).join(' ')}
+## #{FFaker::Lorem.words(5).join(' ')}
+### #{FFaker::Lorem.words(5).join(' ')}
+#### #{FFaker::Lorem.words(5).join(' ')}
+##### #{FFaker::Lorem.words(5).join(' ')}
+###### #{FFaker::Lorem.words(5).join(' ')}
 
 `Ut tenetur tempora perferendis.` Maiores vitae et voluptatem natus. "Pariatur eos ab dignissimos qui exercitationem." Voluptate quidem reiciendis corporis nesciunt et occaecati's repellat qui's. Repudiandae ea temporibus ut odio quam nihil veritatis. Enim et vero ipsum sed. Esse id blanditiis neque ipsa molestiae laborum omnis sed. Debitis magnam voluptates qui quia. Ut earum incidunt exercitationem possimus harum. Vel velit enim odit assumenda recusandae possimus. *Ipsa saepe voluptas impedit repellendus in vel quo et.*
 
@@ -25,11 +25,11 @@ FactoryGirl.create(:post, published: true,
 
 FactoryGirl.create(:post, published: true,
   content: <<-MARKDOWN
-#{Faker::Lorem.paragraph}
+#{FFaker::Lorem.paragraph}
 
-* #{Faker::Lorem.sentence}
-* #{Faker::Lorem.sentence}
-* #{Faker::Lorem.sentence}
+* #{FFaker::Lorem.sentence}
+* #{FFaker::Lorem.sentence}
+* #{FFaker::Lorem.sentence}
 
 ```ruby
 class Person
@@ -44,10 +44,10 @@ class Person
 end
 ```
 
-1. #{Faker::Lorem.sentence}
-2. #{Faker::Lorem.sentence}
-3. #{Faker::Lorem.sentence}
+1. #{FFaker::Lorem.sentence}
+2. #{FFaker::Lorem.sentence}
+3. #{FFaker::Lorem.sentence}
 
-#{Faker::Lorem.paragraph}
+#{FFaker::Lorem.paragraph}
   MARKDOWN
 )

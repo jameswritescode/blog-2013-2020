@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :post do
-    title     { Faker::Lorem.words(8).join(' ') }
-    content   { Faker::Lorem.paragraphs.join }
-    slug      { Faker::Lorem.words(8).join(' ').parameterize }
+    title     { FFaker::Lorem.words(8).join(' ') }
+    content   { FFaker::Lorem.paragraphs.join }
+    slug      { FFaker::Lorem.words(8).join(' ').parameterize }
   end
 end
